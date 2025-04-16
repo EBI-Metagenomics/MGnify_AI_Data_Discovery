@@ -1,0 +1,109 @@
+{
+    "title": "MGnifyAnalysisDetail",
+    "type": "object",
+    "properties": {
+      "study_accession": { "type": "string" },
+      "accession": { "type": "string" },
+      "experiment_type": { "type": "string" },
+      "run": {"oneOf": [{ "$ref": "#/$defs/AnalysedRun" }, { "type": "null" }]},   
+      "sample": {"oneOf": [{ "$ref": "#/$defs/MGnifySample" },{ "type": "null" }]},
+      "assembly": {"oneOf": [{ "$ref": "#/$defs/Assembly" },{ "type": "null" }]},
+      "pipeline_version": {"type": ["string", "null"],"enum": ["V5", "V6", null]},
+      "downloads": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "path": { "type": "string" },
+            "alias": { "type": "string" },
+            "download_type": {
+              "type": "string",
+              "enum": ["Sequence data","Quality control","Functional analysis","Taxonomic analysis","Statistics","non-coding RNAs","Genome analysis","Analysis RO Crate","Other"]
+            },
+            "file_type": {
+              "type": "string",
+              "enum": ["fasta","tsv","biom","csv","json","svg","tree","html","other"]
+            },
+            "long_description": { "type": "string" },
+            "short_description": { "type": "string" },
+            "download_group": {"type": ["string", "null"]},
+            "file_size_bytes": {"type": ["integer", "null"]},
+            "index_file": {
+              "type": ["object", "null"],
+              "properties": {
+                "index_type": { "type": "string" },
+                "path": { "type": "string" },
+                "relative_url": { "type": "string" }
+              },
+              "required": ["index_type", "path", "relative_url"]
+            },
+            "parent_identifier": {
+              "type": ["integer", "string"]
+            },
+            "url": { "type": "string" }
+          },
+          "required": ["path", "alias", "download_type", "file_type", "long_description", "short_description", "parent_identifier"]
+        }
+      },
+      "read_run": {
+        "oneOf": [
+          { "$ref": "#/$defs/AnalysedRun" },
+          { "type": "null" }
+        ]
+      },
+      "quality_control_summary": {
+        "type": ["object", "null"],
+        "additionalProperties": true
+      },
+      "results_dir": {
+        "type": ["string", "null"]
+      },
+      "metadata": {
+        "type": ["object", "null"],
+        "additionalProperties": true
+      }
+    },
+    "required": [
+      "study_accession",
+      "accession",
+      "experiment_type"
+    ],
+    "$defs": {
+      "AnalysedRun": {
+        "type": "object",
+        "properties": {
+          "accession": { "type": "string" },
+          "instrument_model": { "type": ["string", "null"] },
+          "instrument_platform": { "type": ["string", "null"] }
+        },
+        "required": ["accession", "instrument_model", "instrument_platform"]
+      },
+      "MGnifySample": {
+        "type": "object",
+        "properties": {
+          "accession": { "type": "string" },
+          "ena_accessions": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["accession", "ena_accessions", "updated_at"]
+      },
+      "Assembly": {
+        "type": "object",
+        "properties": {
+          "accession": { "type": "string" },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["accession", "updated_at"]
+      }
+    }
+  }
+  
