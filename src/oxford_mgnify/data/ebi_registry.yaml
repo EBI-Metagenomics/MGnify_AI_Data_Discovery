@@ -1,0 +1,509 @@
+endpoints:
+- name: admin_jump_latest_study
+  url: admin/latest_study
+  method: N/A
+  description: No description provided.
+- name: search
+  url: admin/search/
+  method: N/A
+  description: No description provided.
+- name: toggle_sidebar
+  url: admin/toggle-sidebar/
+  method: N/A
+  description: No description provided.
+- name: index
+  url: admin/
+  method: N/A
+  description: No description provided.
+- name: login
+  url: admin/login/
+  method: N/A
+  description: No description provided.
+- name: logout
+  url: admin/logout/
+  method: N/A
+  description: "Log out the user for the given HttpRequest.\n\n        This should\
+    \ *not* assume the user is already logged in."
+- name: password_change
+  url: admin/password_change/
+  method: N/A
+  description: No description provided.
+- name: password_change_done
+  url: admin/password_change/done/
+  method: N/A
+  description: Display the "success" page after a password change.
+- name: autocomplete
+  url: admin/autocomplete/
+  method: N/A
+  description: No description provided.
+- name: jsi18n
+  url: admin/jsi18n/
+  method: N/A
+  description: "Display the i18n JavaScript that the Django admin requires.\n\n  \
+    \      `extra_context` is unused but present for consistency with the other\n\
+    \        admin views."
+- name: view_on_site
+  url: admin/r/<int:content_type_id>/<path:object_id>/
+  method: N/A
+  description: Redirect to an object's page based on a content-type ID and an object
+    ID.
+- name: auth_group_changelist
+  url: admin/auth/group/
+  method: N/A
+  description: The 'change list' admin view for this model.
+- name: auth_group_add
+  url: admin/auth/group/add/
+  method: N/A
+  description: No description provided.
+- name: auth_group_history
+  url: admin/auth/group/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: auth_group_delete
+  url: admin/auth/group/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: auth_group_change
+  url: admin/auth/group/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/auth/group/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: auth_user_password_change
+  url: admin/auth/user/<id>/password/
+  method: N/A
+  description: No description provided.
+- name: auth_user_changelist
+  url: admin/auth/user/
+  method: N/A
+  description: The 'change list' admin view for this model.
+- name: auth_user_add
+  url: admin/auth/user/add/
+  method: N/A
+  description: No description provided.
+- name: auth_user_history
+  url: admin/auth/user/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: auth_user_delete
+  url: admin/auth/user/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: auth_user_change
+  url: admin/auth/user/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/auth/user/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: ena_sample_changelist
+  url: admin/ena/sample/
+  method: N/A
+  description: No description provided.
+- name: ena_sample_add
+  url: admin/ena/sample/add/
+  method: N/A
+  description: No description provided.
+- name: ena_sample_history
+  url: admin/ena/sample/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: ena_sample_delete
+  url: admin/ena/sample/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: ena_sample_change
+  url: admin/ena/sample/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/ena/sample/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: ena_study_changelist
+  url: admin/ena/study/
+  method: N/A
+  description: No description provided.
+- name: ena_study_add
+  url: admin/ena/study/add/
+  method: N/A
+  description: No description provided.
+- name: ena_study_history
+  url: admin/ena/study/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: ena_study_delete
+  url: admin/ena/study/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: ena_study_change
+  url: admin/ena/study/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/ena/study/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_analysis_get_annotations_json
+  url: admin/analyses/analysis/<path:object_id>/analysis-annotations-json/
+  method: N/A
+  description: No description provided.
+- name: analyses_analysis_changelist
+  url: admin/analyses/analysis/
+  method: N/A
+  description: No description provided.
+- name: analyses_analysis_add
+  url: admin/analyses/analysis/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_analysis_history
+  url: admin/analyses/analysis/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_analysis_delete
+  url: admin/analyses/analysis/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_analysis_change
+  url: admin/analyses/analysis/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/analysis/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_assembly_view_on_ena_browser
+  url: admin/analyses/assembly/<path:object_id>/view_on_ena_browser/
+  method: N/A
+  description: No description provided.
+- name: analyses_assembly_changelist
+  url: admin/analyses/assembly/
+  method: N/A
+  description: No description provided.
+- name: analyses_assembly_add
+  url: admin/analyses/assembly/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_assembly_history
+  url: admin/analyses/assembly/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_assembly_delete
+  url: admin/analyses/assembly/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_assembly_change
+  url: admin/analyses/assembly/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/assembly/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_assembler_changelist
+  url: admin/analyses/assembler/
+  method: N/A
+  description: No description provided.
+- name: analyses_assembler_add
+  url: admin/analyses/assembler/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_assembler_history
+  url: admin/analyses/assembler/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_assembler_delete
+  url: admin/analyses/assembler/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_assembler_change
+  url: admin/analyses/assembler/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/assembler/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_assemblyanalysisrequest_changelist
+  url: admin/analyses/assemblyanalysisrequest/
+  method: N/A
+  description: No description provided.
+- name: analyses_assemblyanalysisrequest_add
+  url: admin/analyses/assemblyanalysisrequest/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_assemblyanalysisrequest_history
+  url: admin/analyses/assemblyanalysisrequest/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_assemblyanalysisrequest_delete
+  url: admin/analyses/assemblyanalysisrequest/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_assemblyanalysisrequest_change
+  url: admin/analyses/assemblyanalysisrequest/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/assemblyanalysisrequest/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_biome_changelist
+  url: admin/analyses/biome/
+  method: N/A
+  description: No description provided.
+- name: analyses_biome_add
+  url: admin/analyses/biome/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_biome_history
+  url: admin/analyses/biome/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_biome_delete
+  url: admin/analyses/biome/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_biome_change
+  url: admin/analyses/biome/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/biome/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_computeresourceheuristic_changelist
+  url: admin/analyses/computeresourceheuristic/
+  method: N/A
+  description: No description provided.
+- name: analyses_computeresourceheuristic_add
+  url: admin/analyses/computeresourceheuristic/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_computeresourceheuristic_history
+  url: admin/analyses/computeresourceheuristic/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_computeresourceheuristic_delete
+  url: admin/analyses/computeresourceheuristic/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_computeresourceheuristic_change
+  url: admin/analyses/computeresourceheuristic/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/computeresourceheuristic/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_run_view_on_ena_browser
+  url: admin/analyses/run/<path:object_id>/view_on_ena_browser/
+  method: N/A
+  description: No description provided.
+- name: analyses_run_changelist
+  url: admin/analyses/run/
+  method: N/A
+  description: No description provided.
+- name: analyses_run_add
+  url: admin/analyses/run/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_run_history
+  url: admin/analyses/run/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_run_delete
+  url: admin/analyses/run/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_run_change
+  url: admin/analyses/run/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/run/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_sample_view_on_ena_browser
+  url: admin/analyses/sample/<path:object_id>/view_on_ena_browser/
+  method: N/A
+  description: No description provided.
+- name: analyses_sample_changelist
+  url: admin/analyses/sample/
+  method: N/A
+  description: No description provided.
+- name: analyses_sample_add
+  url: admin/analyses/sample/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_sample_history
+  url: admin/analyses/sample/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_sample_delete
+  url: admin/analyses/sample/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_sample_change
+  url: admin/analyses/sample/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/sample/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: analyses_study_show_assembly_status_summary
+  url: admin/analyses/study/<path:object_id>/study-assembly-status-summary/
+  method: N/A
+  description: No description provided.
+- name: analyses_study_show_run_type_summary
+  url: admin/analyses/study/<path:object_id>/study-run-type-summary/
+  method: N/A
+  description: No description provided.
+- name: analyses_study_show_analysis_status_summary
+  url: admin/analyses/study/<path:object_id>/study-analysis-status-summary/
+  method: N/A
+  description: No description provided.
+- name: analyses_study_view_on_ena_browser
+  url: admin/analyses/study/<path:object_id>/view_on_ena_browser/
+  method: N/A
+  description: No description provided.
+- name: analyses_study_changelist
+  url: admin/analyses/study/
+  method: N/A
+  description: No description provided.
+- name: analyses_study_add
+  url: admin/analyses/study/add/
+  method: N/A
+  description: No description provided.
+- name: analyses_study_history
+  url: admin/analyses/study/<path:object_id>/history/
+  method: N/A
+  description: The 'history' admin view for this model.
+- name: analyses_study_delete
+  url: admin/analyses/study/<path:object_id>/delete/
+  method: N/A
+  description: No description provided.
+- name: analyses_study_change
+  url: admin/analyses/study/<path:object_id>/change/
+  method: N/A
+  description: No description provided.
+- name: view
+  url: admin/analyses/study/<path:object_id>/
+  method: N/A
+  description: Provide a redirect on any GET request.
+- name: app_list
+  url: admin/^(?P<app_label>auth|ena|analyses)/$
+  method: N/A
+  description: No description provided.
+- name: catch_all_view
+  url: admin/(?P<url>.*)$
+  method: N/A
+  description: No description provided.
+- name: openapi-json
+  url: api/v2/openapi.json
+  method: N/A
+  description: "partial(func, *args, **keywords) - new function with partial application\n\
+    \    of the given arguments and keywords."
+- name: openapi-view
+  url: api/v2/docs
+  method: N/A
+  description: "partial(func, *args, **keywords) - new function with partial application\n\
+    \    of the given arguments and keywords."
+- name: get_mgnify_study
+  url: api/v2/studies/<accession>
+  method: N/A
+  description: No description provided.
+- name: list_mgnify_studies
+  url: api/v2/studies
+  method: N/A
+  description: No description provided.
+- name: get_mgnify_analysis
+  url: api/v2/analyses/<accession>
+  method: N/A
+  description: No description provided.
+- name: get_mgnify_analysis_with_annotations
+  url: api/v2/analyses/<accession>/annotations
+  method: N/A
+  description: No description provided.
+- name: get_mgnify_analysis_with_annotations_of_type
+  url: api/v2/analyses/<accession>/annotations/<annotation_type>
+  method: N/A
+  description: No description provided.
+- name: list_mgnify_analyses
+  url: api/v2/analyses
+  method: N/A
+  description: No description provided.
+- name: list_private_mgnify_analyses
+  url: api/v2/my-data/analyses
+  method: N/A
+  description: No description provided.
+- name: list_private_mgnify_studies
+  url: api/v2/my-data/studies
+  method: N/A
+  description: No description provided.
+- name: list_assembly_analysis_requests
+  url: api/v2/analysis_requests
+  method: N/A
+  description: No description provided.
+- name: create_assembly_analysis_request
+  url: api/v2/analysis_requests
+  method: N/A
+  description: No description provided.
+- name: get_assembly_analysis_requests
+  url: api/v2/analysis_requests/<analysis_request_id>
+  method: N/A
+  description: No description provided.
+- name: api-root
+  url: api/v2/
+  method: N/A
+  description: "partial(func, *args, **keywords) - new function with partial application\n\
+    \    of the given arguments and keywords."
+- name: endpoint_registry
+  url: api/endpoint-registry/
+  method: N/A
+  description: No description provided.
+- name: render_panel
+  url: __debug__/render_panel/
+  method: N/A
+  description: Render the contents of a panel
+- name: history_sidebar
+  url: __debug__/history_sidebar/
+  method: N/A
+  description: Returns the selected debug toolbar history snapshot.
+- name: history_refresh
+  url: __debug__/history_refresh/
+  method: N/A
+  description: Returns the refreshed list of table rows for the History Panel.
+- name: sql_select
+  url: __debug__/sql_select/
+  method: N/A
+  description: Returns the output of the SQL SELECT statement
+- name: sql_explain
+  url: __debug__/sql_explain/
+  method: N/A
+  description: Returns the output of the SQL EXPLAIN on the given query
+- name: sql_profile
+  url: __debug__/sql_profile/
+  method: N/A
+  description: Returns the output of running the SQL and getting the profiling statistics
+- name: template_source
+  url: __debug__/template_source/
+  method: N/A
+  description: "Return the source of a template, syntax-highlighted by Pygments if\n\
+    \    it's available."
+- name: edit_samplesheet_fetch
+  url: workflows/edit-samplesheet/fetch/<str:filepath_encoded>/
+  method: N/A
+  description: No description provided.
+- name: edit_samplesheet_edit
+  url: workflows/edit-samplesheet/edit/<str:filepath_encoded>/
+  method: N/A
+  description: No description provided.
+- name: wait_for_flowrun
+  url: workflows/await-flowrun/<str:flowrun_id>/<str:next_url>
+  method: N/A
+  description: No description provided.
