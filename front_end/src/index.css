@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* root class allows us to define colour variables, this makes reuse 
+   across different elements more clear, and allows for theming.     */
+:root{
+  --bg-colour: #FFFFFF;
+  --primary-green: #45A049;
+  --secondary-green: #4CAF50;
+  --text-colour: #0A0A0A;
+  --form-colour: #efefef;
+  --label-colour: #333;
+  --return-colour: #dfdfdf;
+  --return-colour-text: #676767;
+}
+
+/* data-theme attribute lets us switch between light and dark mode */
+[data-theme="dark"] {
+  --bg-colour: #0A0A0A;
+  --primary-green: #37833A;
+  --secondary-green: #307433;
+  --text-colour: #FFFFFF;
+  --form-colour: #212121;
+  --label-colour: #EEEEEE;
+  --return-colour: #303030;
+  --return-colour-text: #A9A9A9;
+}

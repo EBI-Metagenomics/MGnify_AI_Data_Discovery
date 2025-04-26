@@ -1,0 +1,191 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  text-align: center;
+  padding: 50px;
+  background-color: var(--bg-colour);
+}
+
+.search-wrapper {
+  width: 100%;
+  max-width: 600px;
+}
+
+.ebi-header {
+  text-align: left;
+  color: var(--primary-green); /* Green colour taken from existing EBI web pages, pairing it with black is based on their pages also. */
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+h1 {
+  color: var(--text-colour);
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.download-line {
+  color: var(--text-colour);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+form {
+  padding: 20px;
+  background-color: var(--form-colour);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.returnSection {
+  padding: 20px;
+  background-color: var(--form-colour);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  color: var(--label-colour);
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+input[type="text"],textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  background-color: var(--bg-colour);
+  color: var(--text-colour);
+  border: 1px solid var(--border-colour);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.models {
+  float: left;
+  width: 20%;
+  padding: 8px;
+  font-size: 0.8rem;
+  background-color: var(--bg-colour);
+  color: var(--text-colour);
+  border: 1px solid var(--border-colour);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: var(--primary-green);
+  color: var(--bg-colour);
+  border: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+
+#submitBtn{
+  padding: 15px 30px;
+  width: 100%;
+}
+
+#downloadBtn{
+  padding: 15px 15px;
+}
+
+.button-Image{
+  max-width: 60%;
+  height: auto;
+} /* Ensure the download image in the buttons is not too large.*/
+
+
+button:hover {
+  background-color: var(--secondary-green);
+}
+
+.download-line {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom: 10px;
+}
+
+.code-show{
+  width:max-content;
+  background-color: var(--return-colour);
+  color: var(--return-colour-text);
+  text-align: left;
+  border-radius: 5px;
+}
+
+#apiBtn{
+  background-color: var(--return-colour);
+  color: var(--return-colour-text);
+  border-radius: none;
+}
+
+/* The following CSS is to display and animate the theme toggle.*/
+
+.theme-toggle {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+} /* Locates the toggle in the top right */
+
+.toggle {
+  visibility: hidden; 
+} /* This makes the checkbox invisible, we only see the animated label. */
+
+.toggleAnim {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+} /* Sizes the label and places the moving circle in the middle of the slider. */
+
+.toggleAnim::before {
+  content: "";
+  height: 1em;
+  width: 2em;
+  border-radius: 1em;
+  background-color: var(--primary-green);
+  margin-right: 0.5em;
+  transition: background-color 250ms ease-in-out;
+} /* This creates the slider. */
+
+.toggleAnim::after {
+  content: "";
+  height: 0.8em;
+  width: 0.8em;
+  border-radius: 1em;
+  background-color: var(--secondary-green);
+  position: absolute;
+  left: 0.2em;
+  transition: background-color 250ms ease-in-out, transform 250ms ease-in-out;
+} /* This creates the circle. */
+
+.toggle:checked + .toggleAnim::after {
+  transform: translateX(100%);
+} /* This shifts the circle left and right when toggled.*/
