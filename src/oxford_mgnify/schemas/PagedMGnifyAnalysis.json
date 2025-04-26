@@ -1,0 +1,100 @@
+{
+  "title": "PagedMGnifyAnalysis",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "study_accession": {
+            "type": "string"
+          },
+          "accession": {
+            "type": "string"
+          },
+          "experiment_type": {
+            "type": "string"
+          },
+          "run": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "accession": {
+                    "type": "string"
+                  },
+                  "instrument_model": {
+                    "anyOf": [
+                      { "type": "string" },
+                      { "type": "null" }
+                    ]
+                  },
+                  "instrument_platform": {
+                    "anyOf": [
+                      { "type": "string" },
+                      { "type": "null" }
+                    ]
+                  }
+                },
+                "required": ["accession", "instrument_model", "instrument_platform"]
+              },
+              { "type": "null" }
+            ]
+          },
+          "sample": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "accession": { "type": "string" },
+                  "ena_accessions": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": ["accession", "ena_accessions", "updated_at"]
+              },
+              { "type": "null" }
+            ]
+          },
+          "assembly": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "accession": { "type": "string" },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": ["accession", "updated_at"]
+              },
+              { "type": "null" }
+            ]
+          },
+          "pipeline_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": ["V5", "V6"]
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["study_accession", "accession", "experiment_type", "run", "sample", "assembly", "pipeline_version"]
+      }
+    },
+    "count": {
+      "type": "integer"
+    }
+  },
+  "required": ["items", "count"]
+}
+  
