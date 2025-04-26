@@ -29,3 +29,6 @@ coverage.xml
 .vscode/
 *.swp
 *.swo
+
+
+node_modules/
