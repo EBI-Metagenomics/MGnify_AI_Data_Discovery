@@ -7,23 +7,15 @@
       "items": {
         "type": "object",
         "properties": {
-          "study_accession": {
-            "type": "string"
-          },
-          "accession": {
-            "type": "string"
-          },
-          "experiment_type": {
-            "type": "string"
-          },
+          "study_accession": { "type": "string" },
+          "accession": { "type": "string" },
+          "experiment_type": { "type": "string" },
           "run": {
             "anyOf": [
               {
                 "type": "object",
                 "properties": {
-                  "accession": {
-                    "type": "string"
-                  },
+                  "accession": { "type": "string" },
                   "instrument_model": {
                     "anyOf": [
                       { "type": "string" },

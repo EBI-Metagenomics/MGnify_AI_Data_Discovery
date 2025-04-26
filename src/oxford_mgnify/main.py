@@ -27,16 +27,21 @@ def get_context():
         analysis_detail_schema = file.read()
     with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/PagedMGnifyAnalysis.json', 'r') as file:
         paged_analysis_schema = file.read()
+    with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyStudyDetail.json', 'r') as file:
+        study_detail_schema = file.read()
     context = (
         "You have access to the following endpoints. \n" 
         "https://www.ebi.ac.uk/metagenomics/api/v2/analyses/ \n" 
         "This endpoint lists all analyses available from MGnify. The response from this endpoint has the following schema: \n" 
         f"{paged_analysis_schema}\n"
-        "https://www.ebi.ac.uk/metagenomics/api/v2/analyses/<accession> \n"
+        "https://www.ebi.ac.uk/metagenomics/api/v2/analyses/<analysis_accession> \n"
         "This endpoint gets MGnify analysis by accesion number. This endpoint has the following parameters: \n"
         "page, page_size\n"
         "The response from this endpoint has the following schema:\n"
         f"{analysis_detail_schema}\n"
+        "https://www.ebi.ac.uk/metagenomics/api/v2/studies/<study_accession> \n"
+        "This endpoint gets the detail of a single study. The response from this endpoign has the following schema:\n"
+        f"{study_detail_schema}"
     )
     return context
 
