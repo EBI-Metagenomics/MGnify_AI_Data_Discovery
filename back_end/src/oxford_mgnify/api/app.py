@@ -43,6 +43,7 @@ def returnCode():
         }
     else:
         response = {
+            "ascension": {},
             "error": result["error"],
             "traceback": result["traceback"],
             "output": result["output"],
