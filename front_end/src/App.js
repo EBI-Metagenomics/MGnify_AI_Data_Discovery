@@ -3,6 +3,9 @@ import './App.css';
 import downloadDark from "./images/download-icon-black.jpg";
 import downloadLight from "./images/download-icon-white.png";
 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 function App() {
   const [searchQuery, setSearchQuery] = useState('');               // Keep the input string as state
   const [chosenModel, setChosenModel] = useState('DeepSeek');       // Keep the chosen model as state, default to DeepSeek
@@ -28,37 +31,23 @@ function App() {
   // and then we need to wait to hear back from this and the web server,
   // and serve the results to the user.
   const handleSubmit = (e) => {
-    // This ensures the page won't reload
-    e.preventDefault(); 
-    // We want to replace the old return page - indicate that we are loading the new response.
+    e.preventDefault();
     setReturnVisible(false);
-    // This updates the JSON state:
-    setFormJson({...formJson, model: chosenModel, query: searchQuery});
-    // Send the query off to the backend, wait for the response:
-    
-    // generateResult();
-    
-    // Once that's done, serve the user the return section:
-    // NOTE: The following should only activate once we hear back from the backend,
-    //       the 'await's in generateResult should enforce this if I understand them correctly.
-    setReturnVisible(true); 
+    generateResult(chosenModel, searchQuery); // Pass the latest values directly
   };
   
   // This should pass off the JSON to the back end, and serve us the results (and the generated code).
-  async function generateResult() {
-    // This POSTs the form response to the back end (location unknown right now!)
-    const postResponse = await fetch(figureoutthelocation.com, {
+  async function generateResult(model, query) {
+    const payload = { model, query };
+    const postResponse = await fetch("http://localhost:5000/code", {
       method: "POST",
-      body: JSON.stringify(formJson),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
-    // This puts the stuff that was posted into the console to verify it: (testing purposes only)
-    const testData = await postResponse.json()
+    const testData = await postResponse.json();
     console.log(testData);
-    // Then GET the what the back end has to send to us.
-    const response = await fetch(figureoutthelocation.com);
-    const data = await response.json();
-    // set the global data variable so this can actually be used elsewhere.
-    setDataGot(data);
+    setDataGot(testData);
+    setReturnVisible(true); // Only show results after data is received
   }
 
   // Finally serve the user the results of the query via the download button.
@@ -90,7 +79,7 @@ function App() {
         <div className="code-show">
           <p> Advanced: </p>
           <button id="apiBtn" onClick={handleCodeClick} type="button"> Click here to show/hide the code we generated</button>
-          {codeClicked && <WriteCode />}
+          {codeClicked && <CodeWindow />}
         </div>
       </div>
     )
@@ -115,13 +104,44 @@ function App() {
   // Display the generated code.
   // Currently displays a notice that says we do not have any code to return.
   // Should display {dataGot.code} when comms with the backend are set up.
-  function WriteCode(){
-    return( 
-      <div className="codeReturn">
-        <p> No code generated yet! sorry!</p>
-        <p>It will be written here for users to read and check.</p>
+  // function WriteCode(){
+  //   return( 
+  //     <div className="codeReturn">
+  //       <p> No code generated yet! sorry!</p>
+  //       <p>It will be written here for users to read and check.</p>
+  //     </div>
+  //   )
+  // }
+
+  // Update CodeWindow to use a non-fixed style
+  function CodeWindow() {
+    if (!dataGot.code) return null;
+    return (
+      <div style={{
+        marginTop: "1em",
+        background: isDark ? "#1e1e1e" : "#f5f5f5",
+        padding: "1em",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+        borderRadius: "6px",
+        maxWidth: "100%",
+        overflowX: "auto"
+      }}>
+        <h4 style={{margin: 0, color: isDark ? "#fff" : "#222"}}>Generated Python Code</h4>
+        <SyntaxHighlighter
+          language="python"
+          style={isDark ? vscDarkPlus : prism}
+          customStyle={{
+            maxHeight: "200px",
+            overflowY: "auto",
+            fontSize: "1em",
+            borderRadius: "6px",
+            marginTop: "0.5em"
+          }}
+        >
+          {dataGot.code}
+        </SyntaxHighlighter>
       </div>
-    )
+    );
   }
 
   // Change the state of "codeClicked" when the 'click here to...' button is pressed.

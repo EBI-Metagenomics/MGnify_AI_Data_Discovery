@@ -6,6 +6,6 @@
 Contract:
 
 {
-    "ascension" : {"name": String, "id": String}
+    "ascension" : [{"name": String, "id": String}]
     "code" : String
 }
