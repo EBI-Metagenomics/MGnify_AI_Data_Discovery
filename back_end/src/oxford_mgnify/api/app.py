@@ -4,9 +4,11 @@ from flask_cors import CORS
 import io
 import contextlib
 import traceback
+import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3001"])
+frontend_port = os.environ.get("FRONTEND_PORT", "3000")
+CORS(app, origins=[f"http://localhost:{frontend_port}"])
 
 def run_dynamic(code: str, globals_dicts=None, locals_dicts=None):
     if globals_dicts is None:

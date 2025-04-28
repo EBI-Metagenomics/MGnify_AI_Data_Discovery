@@ -23,11 +23,11 @@ guidelines = """
 # For now this is a static context block to the query
 # Aim is to eventually add targeted context based on the query
 def get_context():
-    with open(f'{os.getcwd()}/oxford_mgnify/schemas/MGnifyAnalysisDetail.json', 'r') as file:
+    with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyAnalysisDetail.json', 'r') as file:
         analysis_detail_schema = file.read()
-    with open(f'{os.getcwd()}/oxford_mgnify/schemas/PagedMGnifyAnalysis.json', 'r') as file:
+    with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/PagedMGnifyAnalysis.json', 'r') as file:
         paged_analysis_schema = file.read()
-    with open(f'{os.getcwd()}/oxford_mgnify/schemas/MGnifyStudyDetail.json', 'r') as file:
+    with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyStudyDetail.json', 'r') as file:
         study_detail_schema = file.read()
     context = (
         "You have access to the following endpoints. \n" 
@@ -59,7 +59,7 @@ def get_script(query):
         store=False
     )
 
-    with open(f"{os.getcwd()}/oxford_mgnify/response.py", "w") as file:
+    with open(f"{os.getcwd()}/src/oxford_mgnify/response.py", "w") as file:
         file.write(response.choices[0].message.content)
     
     return response.choices[0].message.content

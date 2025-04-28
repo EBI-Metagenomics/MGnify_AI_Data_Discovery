@@ -38,8 +38,10 @@ function App() {
   
   // This should pass off the JSON to the back end, and serve us the results (and the generated code).
   async function generateResult(model, query) {
+    const backendPort = process.env.REACT_APP_BACKEND_PORT || 5000;
+    const backendUrl = `http://localhost:${backendPort}/code`;
     const payload = { model, query };
-    const postResponse = await fetch("http://localhost:5000/code", {
+    const postResponse = await fetch(backendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
