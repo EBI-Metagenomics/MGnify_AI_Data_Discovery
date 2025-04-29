@@ -1,9 +1,11 @@
 import os
 from openai import OpenAI
+import chromadb
 
 API_KEY = os.environ['OPENAI_API_KEY']
 if not API_KEY:
     raise ValueError("API key not found. Please set the OPENAI_API_KEY environment variable.")
+openai_client = OpenAI(api_key=API_KEY)
 
 initial_prompt = """
 You are an expert in the EBI MGnify V2 API.
@@ -18,11 +20,31 @@ guidelines = """
 5. The script should include necessary import statements and handle any potential exceptions.
 6. Do not include anything other than the script in your response.
 7. Use the API documentation provided in the context to understand the API endpoints, parameters, and response formats.
+8. Use only the context provided, details from the query about the API or any biomes should not be used in your response.
 """
 
-# For now this is a static context block to the query
-# Aim is to eventually add targeted context based on the query
-def get_context():
+def get_biomes(query):
+    chroma_client = chromadb.PersistentClient(path=f'{os.getcwd()}/src/oxford_mgnify/chromadb')
+    collection = chroma_client.get_collection(name="lineages")
+
+    query_embedding = openai_client.embeddings.create(input=query, model="text-embedding-3-small").data[0].embedding
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=10
+    )
+    biomes = (
+        "The biome referenced by a lineage is the final item in the lineage, where items are split by ':' \n"
+        "Any individual item in the lineage is also a valid biome\n"
+        "If the query references information that does not reference the biome, it may be found in the title field of the study\n"
+        "Here are some lineages for biomes which may be relevant.\n"
+    )
+    for lineage in results['documents'][0]:
+        biomes += f'{lineage}\n'
+    return biomes
+
+
+
+def get_context(query):
     with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyAnalysisDetail.json', 'r') as file:
         analysis_detail_schema = file.read()
     with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/PagedMGnifyAnalysis.json', 'r') as file:
@@ -40,19 +62,19 @@ def get_context():
         "The response from this endpoint has the following schema:\n"
         f"{analysis_detail_schema}\n"
         "https://www.ebi.ac.uk/metagenomics/api/v2/studies/<study_accession> \n"
-        "This endpoint gets the detail of a single study. The response from this endpoign has the following schema:\n"
-        f"{study_detail_schema}"
+        "This endpoint gets the detail of a single study. The response from this endpoint has the following schema:\n"
+        f"{study_detail_schema}\n\n"
+        f"{get_biomes(query)}\n"
     )
+    print(get_biomes(query))
     return context
 
 #Constructs the final prompt, sends the request to the llm and processes the response
 def get_script(query):
-    prompt = f"{initial_prompt}\n{guidelines}\nContext:\n{get_context()}\n\nQuestion:\n{query}"
+    prompt = f"{initial_prompt}\n{guidelines}\nContext:\n{get_context(query)}\n\nQuestion:\n{query}"
 
-    client = OpenAI(api_key=API_KEY)
-
-    response = client.chat.completions.create(
-        model="o1-mini",
+    response = openai_client.chat.completions.create(
+        model="o4-mini",
         messages=[
             {"role": "user", "content": prompt}
         ],
@@ -68,6 +90,7 @@ def main():
     #Example query: Retrieve the analysis run with accession MGYA01000004
     query = input()
     get_script(query)
+    # print(get_biomes(query))
 
 if __name__ == "__main__":
     main()
