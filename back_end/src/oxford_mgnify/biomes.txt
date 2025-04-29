@@ -1,0 +1,491 @@
+root:Engineered
+root:Engineered:Biogas plant
+root:Engineered:Biogas plant:Wet fermentation
+root:Engineered:Bioreactor
+root:Engineered:Bioreactor:Continuous culture
+root:Engineered:Bioreactor:Continuous culture:Marine intertidal flat sediment inoculum
+root:Engineered:Bioreactor:Continuous culture:Marine intertidal flat sediment inoculum:Wadden Sea-Germany
+root:Engineered:Bioreactor:Continuous culture:Marine sediment inoculum
+root:Engineered:Bioreactor:Continuous culture:Marine sediment inoculum:Wadden Sea-Germany
+root:Engineered:Bioremediation
+root:Engineered:Bioremediation:Hydrocarbon
+root:Engineered:Bioremediation:Hydrocarbon:Benzene
+root:Engineered:Bioremediation:Hydrocarbon:Benzene:Bioreactor
+root:Engineered:Bioremediation:Metal
+root:Engineered:Bioremediation:Persistent organic pollutants (POP)
+root:Engineered:Bioremediation:Persistent organic pollutants (POP):Polycyclic aromatic hydrocarbons
+root:Engineered:Bioremediation:Terephthalate
+root:Engineered:Bioremediation:Terephthalate:Wastewater
+root:Engineered:Bioremediation:Terephthalate:Wastewater:Activated sludge
+root:Engineered:Bioremediation:Terephthalate:Wastewater:Bioreactor
+root:Engineered:Bioremediation:Tetrachloroethylene and derivatives
+root:Engineered:Bioremediation:Tetrachloroethylene and derivatives:Chloroethene
+root:Engineered:Bioremediation:Tetrachloroethylene and derivatives:Chloroethene:Bioreactor
+root:Engineered:Bioremediation:Tetrachloroethylene and derivatives:Tetrachloroethylene
+root:Engineered:Bioremediation:Tetrachloroethylene and derivatives:Tetrachloroethylene:Bioreactor
+root:Engineered:Biotransformation
+root:Engineered:Biotransformation:Microbial enhanced oil recovery
+root:Engineered:Biotransformation:Microbial solubilization of coal
+root:Engineered:Biotransformation:Mixed alcohol bioreactor
+root:Engineered:Built environment
+root:Engineered:Food production
+root:Engineered:Food production:Dairy products
+root:Engineered:Food production:Fermented beverages
+root:Engineered:Food production:Fermented seafood
+root:Engineered:Food production:Fermented vegetables
+root:Engineered:Food production:Silage fermentation
+root:Engineered:Industrial production
+root:Engineered:Industrial production:Engineered product
+root:Engineered:Lab enrichment
+root:Engineered:Lab enrichment:Defined media
+root:Engineered:Lab enrichment:Defined media:Aerobic media
+root:Engineered:Lab enrichment:Defined media:Anaerobic media
+root:Engineered:Lab enrichment:Defined media:Marine media
+root:Engineered:Lab enrichment:Defined media:Marine media:Algoconsortia
+root:Engineered:Lab enrichment:Undefined media
+root:Engineered:Lab Synthesis
+root:Engineered:Lab Synthesis:Genetic cross
+root:Engineered:Modeled
+root:Engineered:Modeled:Simulated communities (DNA mixture)
+root:Engineered:Modeled:Simulated communities (microbial mixture)
+root:Engineered:Modeled:Simulated communities (sequence read mixture)
+root:Engineered:Modeled:Simulated communities (sequence read mixture):Sanger
+root:Engineered:Solid waste
+root:Engineered:Solid waste:Composting
+root:Engineered:Solid waste:Composting:Grass
+root:Engineered:Solid waste:Composting:Grass:Bioreactor
+root:Engineered:Solid waste:Composting:Bioreactor
+root:Engineered:Solid waste:Composting:Wood
+root:Engineered:Solid waste:Composting:Wood:Bioreactor
+root:Engineered:Solid waste:Landfill
+root:Engineered:Solid waste:Solid animal waste
+root:Engineered:Wastewater
+root:Engineered:Wastewater:Activated Sludge
+root:Engineered:Wastewater:Industrial wastewater
+root:Engineered:Wastewater:Industrial wastewater:Agricultural wastewater
+root:Engineered:Wastewater:Industrial wastewater:Landfill leachate
+root:Engineered:Wastewater:Industrial wastewater:Mine water
+root:Engineered:Wastewater:Industrial wastewater:Petrochemical
+root:Engineered:Wastewater:Industrial wastewater:Pulp and paper wastewater
+root:Engineered:Wastewater:Nutrient removal
+root:Engineered:Wastewater:Nutrient removal:Biological phosphorus removal
+root:Engineered:Wastewater:Nutrient removal:Biological phosphorus removal:Activated sludge
+root:Engineered:Wastewater:Nutrient removal:Biological phosphorus removal:Bioreactor
+root:Engineered:Wastewater:Nutrient removal:Dissolved organics (aerobic)
+root:Engineered:Wastewater:Nutrient removal:Dissolved organics (aerobic):Activated sludge
+root:Engineered:Wastewater:Nutrient removal:Dissolved organics (anaerobic)
+root:Engineered:Wastewater:Nutrient removal:Dissolved organics (anaerobic):Activated sludge
+root:Engineered:Wastewater:Nutrient removal:Nitrogen removal
+root:Engineered:Wastewater:Nutrient removal:Nitrogen removal:Anammox
+root:Engineered:Wastewater:Water and sludge
+root:Environmental
+root:Environmental:Air
+root:Environmental:Air:Indoor Air
+root:Environmental:Air:Outdoor Air
+root:Environmental:Aquatic
+root:Environmental:Aquatic:Aquaculture
+root:Environmental:Aquatic:Estuary
+root:Environmental:Aquatic:Estuary:Sediment
+root:Environmental:Aquatic:Freshwater
+root:Environmental:Aquatic:Freshwater:Drinking water
+root:Environmental:Aquatic:Freshwater:Drinking water:Chlorinated
+root:Environmental:Aquatic:Freshwater:Drinking water:Delivery networks
+root:Environmental:Aquatic:Freshwater:Groundwater
+root:Environmental:Aquatic:Freshwater:Groundwater:Acid Mine Drainage
+root:Environmental:Aquatic:Freshwater:Groundwater:Biofilm
+root:Environmental:Aquatic:Freshwater:Groundwater:Cave water
+root:Environmental:Aquatic:Freshwater:Groundwater:Coalbed water
+root:Environmental:Aquatic:Freshwater:Groundwater:Contaminated
+root:Environmental:Aquatic:Freshwater:Groundwater:Mine
+root:Environmental:Aquatic:Freshwater:Groundwater:Mine drainage
+root:Environmental:Aquatic:Freshwater:Ice
+root:Environmental:Aquatic:Freshwater:Ice:Glacial lake
+root:Environmental:Aquatic:Freshwater:Ice:Glacier
+root:Environmental:Aquatic:Freshwater:Ice:Ice accretions
+root:Environmental:Aquatic:Freshwater:Lake
+root:Environmental:Aquatic:Freshwater:Lentic
+root:Environmental:Aquatic:Freshwater:Lentic:Epilimnion
+root:Environmental:Aquatic:Freshwater:Lentic:Hypolimnion
+root:Environmental:Aquatic:Freshwater:Lentic:Limnetic zone
+root:Environmental:Aquatic:Freshwater:Lentic:Littoral zone
+root:Environmental:Aquatic:Freshwater:Lentic:Sediment
+root:Environmental:Aquatic:Freshwater:Lotic
+root:Environmental:Aquatic:Freshwater:Lotic:Acidic
+root:Environmental:Aquatic:Freshwater:Lotic:Low land river systems
+root:Environmental:Aquatic:Freshwater:Lotic:Microbial mats
+root:Environmental:Aquatic:Freshwater:Lotic:Mid stream
+root:Environmental:Aquatic:Freshwater:Lotic:Sediment
+root:Environmental:Aquatic:Freshwater:Microbialites
+root:Environmental:Aquatic:Freshwater:Pond
+root:Environmental:Aquatic:Freshwater:Pond:Sediment
+root:Environmental:Aquatic:Freshwater:Sediment
+root:Environmental:Aquatic:Freshwater:Storm water
+root:Environmental:Aquatic:Freshwater:Storm water:Drainage pipe biofilm
+root:Environmental:Aquatic:Freshwater:Subglacial lake
+root:Environmental:Aquatic:Freshwater:Wetlands
+root:Environmental:Aquatic:Freshwater:Wetlands:Bog
+root:Environmental:Aquatic:Freshwater:Wetlands:Marsh
+root:Environmental:Aquatic:Freshwater:Wetlands:Sediment
+root:Environmental:Aquatic:Freshwater:Wetlands:Swamp
+root:Environmental:Aquatic:Lentic
+root:Environmental:Aquatic:Lentic:Brackish
+root:Environmental:Aquatic:Marine
+root:Environmental:Aquatic:Marine:Brackish
+root:Environmental:Aquatic:Marine:Coastal
+root:Environmental:Aquatic:Marine:Coastal:Sediment
+root:Environmental:Aquatic:Marine:Cold seeps
+root:Environmental:Aquatic:Marine:Cold seeps:Sediment
+root:Environmental:Aquatic:Marine:Fossil
+root:Environmental:Aquatic:Marine:Fossil:Whale fall
+root:Environmental:Aquatic:Marine:Hydrothermal vents
+root:Environmental:Aquatic:Marine:Hydrothermal vents:Black smokers
+root:Environmental:Aquatic:Marine:Hydrothermal vents:Diffuse flow
+root:Environmental:Aquatic:Marine:Hydrothermal vents:Microbial mats
+root:Environmental:Aquatic:Marine:Hydrothermal vents:Sediment
+root:Environmental:Aquatic:Marine:Intertidal zone
+root:Environmental:Aquatic:Marine:Intertidal zone:Beach
+root:Environmental:Aquatic:Marine:Intertidal zone:Coral reef
+root:Environmental:Aquatic:Marine:Intertidal zone:Estuary
+root:Environmental:Aquatic:Marine:Intertidal zone:Mangrove swamp
+root:Environmental:Aquatic:Marine:Intertidal zone:Microbialites
+root:Environmental:Aquatic:Marine:Intertidal zone:Oil-contaminated
+root:Environmental:Aquatic:Marine:Intertidal zone:Salt marsh
+root:Environmental:Aquatic:Marine:Intertidal zone:Sediment
+root:Environmental:Aquatic:Marine:Marginal Sea
+root:Environmental:Aquatic:Marine:Neritic zone
+root:Environmental:Aquatic:Marine:Neritic zone:Oil-contaminated sediment
+root:Environmental:Aquatic:Marine:Neritic zone:Sediment
+root:Environmental:Aquatic:Marine:Oceanic
+root:Environmental:Aquatic:Marine:Oceanic:Abyssal plane
+root:Environmental:Aquatic:Marine:Oceanic:Aphotic zone
+root:Environmental:Aquatic:Marine:Oceanic:Benthic
+root:Environmental:Aquatic:Marine:Oceanic:Oil-contaminated
+root:Environmental:Aquatic:Marine:Oceanic:Oil-contaminated sediments
+root:Environmental:Aquatic:Marine:Oceanic:Photic zone
+root:Environmental:Aquatic:Marine:Oceanic:Sediment
+root:Environmental:Aquatic:Marine:Oil field
+root:Environmental:Aquatic:Marine:Oil field:bore hole
+root:Environmental:Aquatic:Marine:Oil seeps
+root:Environmental:Aquatic:Marine:Pelagic
+root:Environmental:Aquatic:Marine:Oil-contaminated sediment
+root:Environmental:Aquatic:Marine:Sediment
+root:Environmental:Aquatic:Marine:Volcanic
+root:Environmental:Aquatic:Marine:Wetlands
+root:Environmental:Aquatic:Marine:Wetlands:Sediment
+root:Environmental:Aquatic:Meromictic lake
+root:Environmental:Aquatic:Non-marine Saline and Alkaline
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Alkaline
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Alkaline:Carbonate
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Alkaline:Microbial mats
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Alkaline:Sediment
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Hypersaline
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Hypersaline:Microbial mats
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Hypersaline:Sediment
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Near-boiling (>90C)
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Near-boiling (>90C):Alkaline
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Saline
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Saline:Athalassic
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Saline:Epilimnion
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Saline:Hypolimnion
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Saline:Microbial mats
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Saline:Sediment
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Saline:Thalassic
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Salt crystallizer pond
+root:Environmental:Aquatic:Non-marine Saline and Alkaline:Salt crystallizer pond:Microbial mats
+root:Environmental:Aquatic:Sediment
+root:Environmental:Aquatic:Thermal springs
+root:Environmental:Aquatic:Thermal springs:Hot (42-90C)
+root:Environmental:Aquatic:Thermal springs:Hot (42-90C):Acidic
+root:Environmental:Aquatic:Thermal springs:Hot (42-90C):Alkaline
+root:Environmental:Aquatic:Thermal springs:Hot (42-90C):Neutral
+root:Environmental:Aquatic:Thermal springs:Hot (42-90C):Sediment
+root:Environmental:Aquatic:Thermal springs:Near-boiling (>90C)
+root:Environmental:Aquatic:Thermal springs:Near-boiling (>90C):Alkaline
+root:Environmental:Aquatic:Thermal springs:Sediment
+root:Environmental:Aquatic:Thermal springs:Tepid (25-34C)
+root:Environmental:Aquatic:Thermal springs:Tepid (25-34C):Sediment
+root:Environmental:Aquatic:Thermal springs:Warm (34-42C)
+root:Environmental:Aquatic:Thermal springs:Warm (34-42C):Neutral
+root:Environmental:Aquatic:Thermal springs:Warm (34-42C):Sediment
+root:Environmental:Terrestrial
+root:Environmental:Terrestrial:Agricultural field
+root:Environmental:Terrestrial:Asphalt lakes
+root:Environmental:Terrestrial:Asphalt lakes:Tar
+root:Environmental:Terrestrial:Deep subsurface
+root:Environmental:Terrestrial:Deep subsurface:Clay
+root:Environmental:Terrestrial:Geologic
+root:Environmental:Terrestrial:Geologic:Mine
+root:Environmental:Terrestrial:Oil reservoir
+root:Environmental:Terrestrial:Rock-dwelling (subaerial biofilm)
+root:Environmental:Terrestrial:Soil
+root:Environmental:Terrestrial:Soil:Clay
+root:Environmental:Terrestrial:Soil:Clay:Agricultural land
+root:Environmental:Terrestrial:Soil:Clay:Contaminated
+root:Environmental:Terrestrial:Soil:Clay:Grasslands
+root:Environmental:Terrestrial:Soil:Clay:Oil-contaminated
+root:Environmental:Terrestrial:Soil:Crop
+root:Environmental:Terrestrial:Soil:Crop:Agricultural land
+root:Environmental:Terrestrial:Soil:Loam
+root:Environmental:Terrestrial:Soil:Loam:Agricultural
+root:Environmental:Terrestrial:Soil:Loam:Contaminated
+root:Environmental:Terrestrial:Soil:Loam:Forest soil
+root:Environmental:Terrestrial:Soil:Loam:Grasslands
+root:Environmental:Terrestrial:Soil:Sand
+root:Environmental:Terrestrial:Soil:Sand:Desert
+root:Environmental:Terrestrial:Soil:Sand:Forest soil
+root:Environmental:Terrestrial:Soil:Sand:Grasslands
+root:Environmental:Terrestrial:Soil:Sand:Oil-contaminated
+root:Environmental:Terrestrial:Soil:Silt
+root:Environmental:Terrestrial:Soil:Agricultural
+root:Environmental:Terrestrial:Soil:Boreal forest
+root:Environmental:Terrestrial:Soil:Contaminated
+root:Environmental:Terrestrial:Soil:Desert
+root:Environmental:Terrestrial:Soil:Forest soil
+root:Environmental:Terrestrial:Soil:Grasslands
+root:Environmental:Terrestrial:Soil:Mine
+root:Environmental:Terrestrial:Soil:Mine drainage
+root:Environmental:Terrestrial:Soil:Oil-contaminated
+root:Environmental:Terrestrial:Soil:Permafrost
+root:Environmental:Terrestrial:Soil:Shrubland
+root:Environmental:Terrestrial:Soil:Tropical rainforest
+root:Environmental:Terrestrial:Soil:Uranium contaminated
+root:Environmental:Terrestrial:Soil:Viriome
+root:Environmental:Terrestrial:Soil:Wetlands
+root:Environmental:Terrestrial:Soil:Wetlands:Permafrost
+root:Environmental:Terrestrial:Volcanic
+root:Environmental:Terrestrial:Volcanic:Fumaroles
+root:Host-associated
+root:Host-associated:Algae
+root:Host-associated:Algae:Brown Algae
+root:Host-associated:Algae:Green algae
+root:Host-associated:Algae:Green algae:Ectosymbionts
+root:Host-associated:Algae:Red algae
+root:Host-associated:Algae:Red algae:Ectosymbionts 
+root:Host-associated:Amphibia
+root:Host-associated:Amphibia:Digestive system
+root:Host-associated:Amphibia:Excretory system
+root:Host-associated:Animal
+root:Host-associated:Animal:Circulatory system
+root:Host-associated:Animal:Digestive system
+root:Host-associated:Animal:Digestive system:Fecal
+root:Host-associated:Animal:Fossil
+root:Host-associated:Animal:Fossil:Bone
+root:Host-associated:Animal:Fossil:Feces
+root:Host-associated:Animal:Reproductive system
+root:Host-associated:Animal:Respiratory system
+root:Host-associated:Animal:Skin
+root:Host-associated:Annelida
+root:Host-associated:Annelida:Digestive system
+root:Host-associated:Annelida:Digestive system:Digestive tube
+root:Host-associated:Annelida:Digestive system:Digestive tube:Extracellular symbionts
+root:Host-associated:Annelida:Integument
+root:Host-associated:Annelida:Integument:Cuticle
+root:Host-associated:Annelida:Integument:Cuticle:Epibionts
+root:Host-associated:Annelida:Integument:Subcuticular space
+root:Host-associated:Annelida:Integument:Subcuticular space:Extracellular symbionts
+root:Host-associated:Annelida:Intracellular endosymbionts
+root:Host-associated:Annelida:Intracellular endosymbionts:Trophosome
+root:Host-associated:Annelida:Reproductive system
+root:Host-associated:Annelida:Reproductive system:Egg capsule
+root:Host-associated:Annelida:Reproductive system:Egg capsule:Extracellular
+root:Host-associated:Arthropoda
+root:Host-associated:Arthropoda:Digestive system
+root:Host-associated:Arthropoda:Digestive system:Foregut
+root:Host-associated:Arthropoda:Digestive system:Gut
+root:Host-associated:Arthropoda:Digestive system:Gut:P3 segment
+root:Host-associated:Arthropoda:Digestive system:Gut:Proctodeal segment
+root:Host-associated:Arthropoda:Digestive system:Hindgut
+root:Host-associated:Arthropoda:Digestive system:Hindgut:P1 segment
+root:Host-associated:Arthropoda:Digestive system:Hindgut:P3 segment
+root:Host-associated:Arthropoda:Digestive system:Midgut
+root:Host-associated:Arthropoda:Digestive system:Oral
+root:Host-associated:Arthropoda:Digestive system:Oral:Saliva
+root:Host-associated:Arthropoda:Integument
+root:Host-associated:Arthropoda:Integument:Cuticle
+root:Host-associated:Arthropoda:Integument:Cuticle:Thoracic segments
+root:Host-associated:Arthropoda:Intracellular endosymbionts
+root:Host-associated:Arthropoda:Intracellular endosymbionts:Primary
+root:Host-associated:Arthropoda:Intracellular endosymbionts:Primary:Bacteriomes
+root:Host-associated:Arthropoda:Intracellular endosymbionts:Secondary
+root:Host-associated:Arthropoda:Oral cavity
+root:Host-associated:Arthropoda:Respiratory system
+root:Host-associated:Arthropoda:Respiratory system:Gills
+root:Host-associated:Arthropoda:Symbiotic fungal gardens and galleries
+root:Host-associated:Arthropoda:Symbiotic fungal gardens and galleries:Fungus gallery
+root:Host-associated:Arthropoda:Symbiotic fungal gardens and galleries:Fungus garden
+root:Host-associated:Arthropoda:Symbiotic fungal gardens and galleries:Fungus garden:Garden dump
+root:Host-associated:Arthropoda:Venom gland
+root:Host-associated:Arthropoda:Venom gland:Venom
+root:Host-associated:Birds
+root:Host-associated:Birds:Circulatory system
+root:Host-associated:Birds:Circulatory system:Blood
+root:Host-associated:Birds:Digestive system
+root:Host-associated:Birds:Digestive system:Ceca
+root:Host-associated:Birds:Digestive system:Ceca:Lumen
+root:Host-associated:Birds:Digestive system:Crop
+root:Host-associated:Birds:Digestive system:Crop:Lumen
+root:Host-associated:Birds:Digestive system:Digestive tube
+root:Host-associated:Birds:Digestive system:Digestive tube:Cecum
+root:Host-associated:Birds:Digestive system:Fecal
+root:Host-associated:Birds:Digestive system:Small intestine
+root:Host-associated:Birds:Digestive system:Small intestine:Duodenal
+root:Host-associated:Birds:Reproductive system
+root:Host-associated:Birds:Respiratory system
+root:Host-associated:Birds:Respiratory system:Lungs
+root:Host-associated:Cnidaria
+root:Host-associated:Echinodermata
+root:Host-associated:Endosymbionts
+root:Host-associated:Endosymbionts:Fungi
+root:Host-associated:Endosymbionts:Fungi:Endosymbionts
+root:Host-associated:Fish
+root:Host-associated:Fish:Circulatory system
+root:Host-associated:Fish:Circulatory system:Blood
+root:Host-associated:Fish:Digestive system
+root:Host-associated:Fish:Digestive system:Foregut
+root:Host-associated:Fish:Digestive system:Foregut:Uncharacterized
+root:Host-associated:Fish:Digestive system:Intestine
+root:Host-associated:Fish:Excretory system
+root:Host-associated:Fish:Excretory system:Kidneys
+root:Host-associated:Fish:Reproductive system
+root:Host-associated:Fish:Skin
+root:Host-associated:Fish:Skin:Slime
+root:Host-associated:Fungi
+root:Host-associated:Human
+root:Host-associated:Human:Circulatory system
+root:Host-associated:Human:Circulatory system:Blood
+root:Host-associated:Human:Digestive system
+root:Host-associated:Human:Digestive system:Hindgut
+root:Host-associated:Human:Digestive system:Hindgut:Rectum
+root:Host-associated:Human:Digestive system:Intestine
+root:Host-associated:Human:Digestive system:Large intestine
+root:Host-associated:Human:Digestive system:Large intestine:Fecal
+root:Host-associated:Human:Digestive system:Large intestine:Sigmoid colon
+root:Host-associated:Human:Digestive system:Oral
+root:Host-associated:Human:Digestive system:Oral:Attached Keratinized gingiva
+root:Host-associated:Human:Digestive system:Oral:buccal mucosa
+root:Host-associated:Human:Digestive system:Oral:hard palate
+root:Host-associated:Human:Digestive system:Oral:Palatine tonsils
+root:Host-associated:Human:Digestive system:Oral:Periodontal pockets
+root:Host-associated:Human:Digestive system:Oral:Saliva
+root:Host-associated:Human:Digestive system:Oral:Subgingival plaque
+root:Host-associated:Human:Digestive system:Oral:Supragingival plaque
+root:Host-associated:Human:Digestive system:Oral:Throat
+root:Host-associated:Human:Digestive system:Oral:tongue dorsum
+root:Host-associated:Human:Excretory system
+root:Host-associated:Human:Excretory system:Urethra
+root:Host-associated:Human:Excretory system:Urethra:Urine
+root:Host-associated:Human:Fossil
+root:Host-associated:Human:Fossil:Bone
+root:Host-associated:Human:Lympathic system
+root:Host-associated:Human:Lympathic system:Lymph nodes
+root:Host-associated:Human:Milk
+root:Host-associated:Human:Nervous system
+root:Host-associated:Human:Nervous system:Cerebrospinal fluid
+root:Host-associated:Human:Reproductive system
+root:Host-associated:Human:Reproductive system:Female
+root:Host-associated:Human:Reproductive system:Vagina
+root:Host-associated:Human:Reproductive system:Vagina:Introitus
+root:Host-associated:Human:Reproductive system:Vagina:Midpoint vagina
+root:Host-associated:Human:Reproductive system:Vagina:posterior fornix
+root:Host-associated:Human:Respiratory system
+root:Host-associated:Human:Respiratory system:Nasopharyngeal
+root:Host-associated:Human:Respiratory system:Nasopharyngeal:anterior nares
+root:Host-associated:Human:Respiratory system:Nasopharyngeal:Nasal cavity
+root:Host-associated:Human:Respiratory system:Nasopharyngeal:Pharynx
+root:Host-associated:Human:Respiratory system:Pulmonary system
+root:Host-associated:Human:Respiratory system:Pulmonary system:Lung
+root:Host-associated:Human:Respiratory system:Pulmonary system:Sputum
+root:Host-associated:Human:Respiratory system:Pulmonary system:Trachea
+root:Host-associated:Human:Respiratory system:Pulmonary system:Viriome
+root:Host-associated:Human:Skin
+root:Host-associated:Human:Skin:Axilla
+root:Host-associated:Human:Skin:Medial distal leg
+root:Host-associated:Human:Skin:Medial distal leg:Venous leg ulcers
+root:Host-associated:Human:Skin:Naris
+root:Host-associated:Human:Skin:retroauricular crease
+root:Host-associated:Human:Skin:Umbilicus
+root:Host-associated:Human:Skin:Volar forearm
+root:Host-associated:Insecta
+root:Host-associated:Insecta:Digestive system
+root:Host-associated:Invertebrates
+root:Host-associated:Invertebrates:Bryozoans
+root:Host-associated:Invertebrates:Bryozoans:Gymnolaemates
+root:Host-associated:Invertebrates:Cnidaria
+root:Host-associated:Invertebrates:Cnidaria:Coral
+root:Host-associated:Invertebrates:Echinodermata
+root:Host-associated:Invertebrates:Echinodermata:Sea Urchin
+root:Host-associated:Mammals
+root:Host-associated:Mammals:Circulatory system
+root:Host-associated:Mammals:Circulatory system:Blood
+root:Host-associated:Mammals:Digestive system
+root:Host-associated:Mammals:Digestive system:Fecal
+root:Host-associated:Mammals:Digestive system:Fecal:Uncharacterized
+root:Host-associated:Mammals:Digestive system:Foregut
+root:Host-associated:Mammals:Digestive system:Foregut:Rumen
+root:Host-associated:Mammals:Digestive system:Large intestine
+root:Host-associated:Mammals:Digestive system:Large intestine:Cecum
+root:Host-associated:Mammals:Digestive system:Large intestine:Fecal
+root:Host-associated:Mammals:Digestive system:Midgut
+root:Host-associated:Mammals:Digestive system:Oral cavity
+root:Host-associated:Mammals:Digestive system:Oral cavity:Buccal mucosa
+root:Host-associated:Mammals:Digestive system:Stomach
+root:Host-associated:Mammals:Digestive system:Stomach:Endoperitrophic space
+root:Host-associated:Mammals:Digestive system:Stomach:Rumen
+root:Host-associated:Mammals:Excretory system
+root:Host-associated:Mammals:Excretory system:Urine
+root:Host-associated:Mammals:Gastrointestinal tract
+root:Host-associated:Mammals:Gastrointestinal tract:Intestine
+root:Host-associated:Mammals:Gastrointestinal tract:Intestine:Fecal
+root:Host-associated:Mammals:Lymphatic
+root:Host-associated:Mammals:Lymphatic:Lymph nodes
+root:Host-associated:Mammals:Milk
+root:Host-associated:Mammals:Nervous system
+root:Host-associated:Mammals:Nervous system:Brain
+root:Host-associated:Mammals:Reproductive system
+root:Host-associated:Mammals:Respiratory system
+root:Host-associated:Mammals:Respiratory system:Nasopharyngeal
+root:Host-associated:Mammals:Respiratory system:Nasopharyngeal:Nasal cavity
+root:Host-associated:Mammals:Respiratory system:Pulmonary system
+root:Host-associated:Mammals:Respiratory system:Pulmonary system:Viriome
+root:Host-associated:Mammals:Skin
+root:Host-associated:Microbial
+root:Host-associated:Microbial:Bacteria
+root:Host-associated:Microbial:Dinoflagellates
+root:Host-associated:Microbial:Dinoflagellates:Endosymbionts
+root:Host-associated:Mollusca
+root:Host-associated:Mollusca:Digestive system
+root:Host-associated:Mollusca:Digestive system:Ceca
+root:Host-associated:Mollusca:Digestive system:Ceca:Uncharacterized
+root:Host-associated:Mollusca:Digestive system:Glands
+root:Host-associated:Mollusca:Respiratory system
+root:Host-associated:Mollusca:Respiratory system:Gills
+root:Host-associated:Mollusca:Respiratory system:Gills:Extracellular
+root:Host-associated:Mollusca:Respiratory system:Gills:Intracellular
+root:Host-associated:Mollusca:Shell
+root:Host-associated:Plants
+root:Host-associated:Plants:Phylloplane
+root:Host-associated:Plants:Phylloplane:Endophytes
+root:Host-associated:Plants:Phylloplane:Epiphytes
+root:Host-associated:Plants:Rhizome
+root:Host-associated:Plants:Rhizome:Epiphytes
+root:Host-associated:Plants:Rhizoplane
+root:Host-associated:Plants:Rhizoplane:Endophytes
+root:Host-associated:Plants:Rhizoplane:Epiphytes
+root:Host-associated:Plants:Rhizoplane:Soil
+root:Host-associated:Plants:Rhizosphere
+root:Host-associated:Plants:Rhizosphere:Epiphytes
+root:Host-associated:Plants:Rhizosphere:Soil
+root:Host-associated:Plants:Rhizosphere:Forest soil
+root:Host-associated:Plants:Root
+root:Host-associated:Porifera
+root:Host-associated:Protists
+root:Host-associated:Protozoa
+root:Host-associated:Reptile
+root:Host-associated:Reptile:Oral cavity
+root:Host-associated:Reptile:Oral cavity:Venom gland
+root:Host-associated:Reptile:Oral cavity:Venom gland:Venom
+root:Host-associated:Spiralia
+root:Host-associated:Tunicates
+root:Host-associated:Tunicates:Ascidians
+root:Control
+root:Mixed
