@@ -41,14 +41,6 @@ h1 {
   text-align: left;
 }
 
-.download-line {
-  color: var(--text-colour);
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  line-height: 1.2;
-  text-align: left;
-}
-
 form {
   padding: 20px;
   background-color: var(--form-colour);
@@ -56,11 +48,46 @@ form {
   margin-bottom: 10px;
 }
 
+.loadingSkeleton {
+  padding: 20px;
+  height: 50px;
+  background-color: var(--form-colour);
+  color: var(--text-colour);
+  animation: changeColor ease;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+@keyframes changeColor {
+  0% {
+    background-color: var(--form-colour);
+  }
+  
+  50% {
+    background-color: var(--form-colour-secondary);
+  }
+  
+  100% {
+    background-color: var(--form-colour);
+  }
+}
+
 .returnSection {
   padding: 20px;
   background-color: var(--form-colour);
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+.return-line {
+  color: var(--text-colour);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-align: left;
 }
 
 label {
@@ -127,18 +154,33 @@ button:hover {
   background-color: var(--secondary-green);
 }
 
-.download-line {
+.return-line {
   display:flex;
   justify-content:space-between;
   margin-bottom: 10px;
 }
 
-.code-show{
-  width:max-content;
+.code-container{
+  margin-top: 1em;
+  padding: 1em;
+  display: flex;
+  flex: wrap;
+  max-width: fit-content;
   background-color: var(--return-colour);
   color: var(--return-colour-text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
   border-radius: 5px;
+  overflow-x: auto;
+  overflow-wrap: break-word;
+}
+
+.code-show{
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 1em;
+  border-radius: 6px;
+  margin-top: 0.5em;
 }
 
 #apiBtn{

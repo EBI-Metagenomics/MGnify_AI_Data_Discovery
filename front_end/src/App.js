@@ -1,23 +1,22 @@
 import { useState } from 'react';
 import './App.css';
-import downloadDark from "./images/download-icon-black.jpg";
-import downloadLight from "./images/download-icon-white.png";
+
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');               // Keep the input string as state
-  const [chosenModel, setChosenModel] = useState('DeepSeek');       // Keep the chosen model as state, default to DeepSeek
-  const [formJson, setFormJson] = useState({model: '', query: ''}); // Keep the values of the submit form as a JSON object
-  const [returnVisible, setReturnVisible] = useState(false);        // Hide the return elements until ready to serve to user
-  const [codeClicked, setCodeClicked] = useState(false);            // Hide or show the generated code to users
-  const [isDark, setIsDark] = useState(false);                      // Allow user to view in dark mode.
-  const [dataGot, setDataGot] = useState({code: '', data: ''});     // Keep the stuff received from the back end as state 
-                                                                    // (currently assuming this will be sent as a single JSON 
-                                                                    // with the code used for the API call, and a single bit of 
-                                                                    // return data. This can and should be changed if needed.)
-
+  const [searchQuery, setSearchQuery] = useState('');         // Keep the input string as state
+  const [chosenModel, setChosenModel] = useState('DeepSeek'); // Keep the chosen model as state, default to DeepSeek
+  const [loading, setLoading] = useState(false);              // Show a loading skeleton while we wait for comms with the back end to complete
+  const [returnVisible, setReturnVisible] = useState(false);  // Hide the return elements until ready to serve to user
+  const [codeClicked, setCodeClicked] = useState(false);      // Hide or show the generated code to users
+  const [isDark, setIsDark] = useState(false);                // Allow user to view in dark mode.
+  const [dataGot, setDataGot] = useState({code: '',           // Keep the stuff received from the back end as state 
+                                          accession: '',      
+                                          error: '',           
+                                          traceback: '',       
+                                          output: ''},);
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value); // e.target is our input field
   };
@@ -33,7 +32,10 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setReturnVisible(false);
+    document.getElementById("submitBtn").disabled = true; // don't allow the form to be resubmit
+    setLoading(true); // draw the loading skeleton
     generateResult(chosenModel, searchQuery); // Pass the latest values directly
+    document.getElementById("submitBtn").disabled = false // allow the form to be resubmit
   };
   
   // This should pass off the JSON to the back end, and serve us the results (and the generated code).
@@ -49,31 +51,22 @@ function App() {
     const testData = await postResponse.json();
     console.log(testData);
     setDataGot(testData);
+    setLoading(false); // hide the loading skeleton
     setReturnVisible(true); // Only show results after data is received
   }
 
-  // Finally serve the user the results of the query via the download button.
-  // The current version uses dummy file data for testing the front end, this
-  // is easily fixed by using the 'dataGot' variable kept as state.
-  function downloadSearchInfo() {
-    // create file contents.
-    // The file contents should be {dataGot.data} once the comms with the back end are set up,
-    // so at that point we should skip the creation of the data, and just make a blob with that.
-    const fileData = `You searched for ${formJson.query} in the MGNify database with ${formJson.model}!`
-    // create a blob with those contents 
-    const blob = new Blob([fileData], { type: "text/plain" });
-    // create a link in the DOM from the blob 
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.download = `${formJson.query.substring(0,10)}.txt`; // filetype may be specified by backend, clarify later.
-    link.href = url;
-    // click the link and download file.
-    link.click();
+  // presents a basic loading skeleton
+  function LoadingSkeleton(){
+    return(
+      <div className="loadingSkeleton">
+          <p>loading...</p>
+      </div>
+    )
   }
 
   // Components we only want you to see when we have the data back from the web server
   function ReturnComponents() {
-    // the "WriteResponse" component is going to have all the download options.
+    // the "WriteResponse" component is going to display the links to the analyses.
     // the "WriteCode" component is going to display the generated code.
     return (
       <div className="returnSection">
@@ -87,59 +80,27 @@ function App() {
     )
   }
 
-  // Display the download options.
-  // Currently serves a single downloadable text file indicating the query that was made.
+  // Display the hyperlink when download was successful, and error message when it isn't.
   function WriteResponse(){
+    if (dataGot.error) return (
+        <div className="return-line"><p>There was an error in processing your query.</p></div>
+    );
+    const url = `https://www.ebi.ac.uk/metagenomics/analysis/${dataGot.accession}#overview`;
     return(
-      <div className="download-all-lines">
-        <div className="download-line">
-          <p>Click here to download the {formJson.query.substring(0,10)} data:</p>
-          <button id="downloadBtn" onClick={downloadSearchInfo} type="button">
-            <img src={isDark ? downloadDark : downloadLight} className="button-Image">
-            </img>
-          </button> 
-        </div>
-      </div>
+        <div className="return-line"><p>Click</p><a href={url} >here</a> <p>to view the {dataGot.accession} data.</p></div>
     )
   }
 
-  // Display the generated code.
-  // Currently displays a notice that says we do not have any code to return.
-  // Should display {dataGot.code} when comms with the backend are set up.
-  // function WriteCode(){
-  //   return( 
-  //     <div className="codeReturn">
-  //       <p> No code generated yet! sorry!</p>
-  //       <p>It will be written here for users to read and check.</p>
-  //     </div>
-  //   )
-  // }
-
-  // Update CodeWindow to use a non-fixed style
+  // CodeWindow uses non-fixed styling
   function CodeWindow() {
     if (!dataGot.code) return null;
     return (
-      <div style={{
-        marginTop: "1em",
-        background: isDark ? "#1e1e1e" : "#f5f5f5",
-        padding: "1em",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-        borderRadius: "6px",
-        maxWidth: "100%",
-        overflowX: "auto"
-      }}>
-        <h4 style={{margin: 0, color: isDark ? "#fff" : "#222"}}>Generated Python Code</h4>
+      <div id="code-container">
+        <h4>Generated Python Code</h4>
         <SyntaxHighlighter
           language="python"
-          style={isDark ? vscDarkPlus : prism}
-          customStyle={{
-            maxHeight: "200px",
-            overflowY: "auto",
-            fontSize: "1em",
-            borderRadius: "6px",
-            marginTop: "0.5em"
-          }}
-        >
+          id="code-show"
+          style={isDark ? vscDarkPlus : prism}>
           {dataGot.code}
         </SyntaxHighlighter>
       </div>
@@ -191,6 +152,7 @@ function App() {
           </select>
           <button id="submitBtn" type="submit">Get Results</button>
         </form>
+        {loading && <LoadingSkeleton />}
         {returnVisible && <ReturnComponents />}
       </div>
     </div>

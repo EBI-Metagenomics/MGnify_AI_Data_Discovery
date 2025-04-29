@@ -20,6 +20,7 @@ code {
   --secondary-green: #4CAF50;
   --text-colour: #0A0A0A;
   --form-colour: #efefef;
+  --form-colour-secondary: #dedede;
   --label-colour: #333;
   --return-colour: #dfdfdf;
   --return-colour-text: #676767;
@@ -32,6 +33,7 @@ code {
   --secondary-green: #307433;
   --text-colour: #FFFFFF;
   --form-colour: #212121;
+  --form-colour-secondary: #323232;
   --label-colour: #EEEEEE;
   --return-colour: #303030;
   --return-colour-text: #A9A9A9;

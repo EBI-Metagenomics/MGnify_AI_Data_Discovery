@@ -40,12 +40,12 @@ def returnCode():
     result = run_dynamic(code)
     if result["success"]:
         response = {
-            "ascension": result["output"],
+            "accession": result["output"],
             "code": code
         }
     else:
         response = {
-            "ascension": {},
+            "accession": {},
             "error": result["error"],
             "traceback": result["traceback"],
             "output": result["output"],
