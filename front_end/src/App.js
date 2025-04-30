@@ -5,6 +5,15 @@ import './App.css';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+function formatJSON(obj) {
+  if (!obj) return "{}";
+  try {
+    return JSON.stringify(obj, null, 2);
+  } catch (e) {
+    return "{}";
+  }
+} 
+
 function App() {
   const [searchQuery, setSearchQuery] = useState('');         // Keep the input string as state
   const [chosenModel, setChosenModel] = useState('DeepSeek'); // Keep the chosen model as state, default to DeepSeek
@@ -43,14 +52,30 @@ function App() {
     const backendPort = process.env.REACT_APP_BACKEND_PORT || 5000;
     const backendUrl = `http://localhost:${backendPort}/code`;
     const payload = { model, query };
-    const postResponse = await fetch(backendUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const testData = await postResponse.json();
-    console.log(testData);
-    setDataGot(testData);
+    try {
+      const postResponse = await fetch(backendUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const testData = await postResponse.json();
+      console.log(testData);
+      setDataGot({
+        code: testData.code || '',
+        accession: testData.accession || '',
+        error: testData.error || '',
+        traceback: testData.traceback || '',
+        output: testData.output || ''
+      });
+    } catch (error) {
+      setDataGot({
+        code: '',
+        accession: '',
+        error: 'Failed to process request',
+        traceback: error.toString(),
+        output: ''
+      });
+    }
     setLoading(false); // hide the loading skeleton
     setReturnVisible(true); // Only show results after data is received
   }
@@ -81,14 +106,57 @@ function App() {
   }
 
   // Display the hyperlink when download was successful, and error message when it isn't.
-  function WriteResponse(){
-    if (dataGot.error) return (
-        <div className="return-line"><p>There was an error in processing your query.</p></div>
+  function WriteResponse() {
+    if (dataGot.error) {
+      return (
+        <div className="return-line">
+          <p>There was an error in processing your query.</p>
+          <p className="error-message">{dataGot.error}</p>
+        </div>
+      );
+    }
+
+    // If we have accession data, display it in a formatted way
+    if (dataGot.accession) {
+      return (
+        <div className="return-line">
+          <h4>Analysis Results:</h4>
+          <div className="json-viewer">
+            <SyntaxHighlighter
+              language="json"
+              style={isDark ? vscDarkPlus : prism}
+              customStyle={{
+                maxHeight: "300px",
+                overflowY: "auto",
+                fontSize: "0.9em",
+                borderRadius: "6px",
+                padding: "1em"
+              }}
+            >
+              {formatJSON(dataGot.accession)}
+            </SyntaxHighlighter>
+          </div>
+          {typeof dataGot.accession === 'string' && (
+            <p>
+              <a 
+                href={`https://www.ebi.ac.uk/metagenomics/analysis/${dataGot.accession}#overview`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on EBI Website
+              </a>
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    // If we have no data
+    return (
+      <div className="return-line">
+        <p>No results available.</p>
+      </div>
     );
-    const url = `https://www.ebi.ac.uk/metagenomics/analysis/${dataGot.accession}#overview`;
-    return(
-        <div className="return-line"><p>Click</p><a href={url} >here</a> <p>to view the {dataGot.accession} data.</p></div>
-    )
   }
 
   // CodeWindow uses non-fixed styling
