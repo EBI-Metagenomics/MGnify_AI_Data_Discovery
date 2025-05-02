@@ -85,9 +85,10 @@ function App() {
     if (dataGot.error) return (
         <div className="return-line"><p>There was an error in processing your query.</p></div>
     );
-    const url = `https://www.ebi.ac.uk/metagenomics/analysis/${dataGot.accession}#overview`;
+    console.log(JSON.stringify(dataGot, null, 4))
+    const url = `https://www.ebi.ac.uk/metagenomics` //`https://www.ebi.ac.uk/metagenomics/analysis/${dataGot.accession}#overview`;
     return(
-        <div className="return-line"><p>Click</p><a href={url} >here</a> <p>to view the {dataGot.accession} data.</p></div>
+        <div className="return-line">Click <a href="{url}">here</a> to view the data.</div>
     )
   }
 
@@ -135,6 +136,7 @@ function App() {
             European Bioinformatics Institute
         </div>
         <h1>Search our dataset - with plain English.</h1>
+        <p className="description">This tool is designed to help generate correct API calls for MGnify using Python. description ........................... description</p>
         <form onSubmit={handleSubmit}>
           <label>What are you searching for?</label>
           <input 
@@ -143,6 +145,7 @@ function App() {
             value={searchQuery}
             onChange={handleSearchChange}
           />
+          {/*
           <label>Select a model to search with: </label>
           <select className="models" name="models" id="models" onChange={handleModelChoice} required>
             <option value="DeepSeek">DeepSeek</option>
@@ -150,6 +153,7 @@ function App() {
             <option value="ChatGPT">ChatGPT</option>
             <option value="Grok">Grok</option>
           </select>
+          */}
           <button id="submitBtn" type="submit">Get Results</button>
         </form>
         {loading && <LoadingSkeleton />}
