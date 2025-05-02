@@ -155,7 +155,7 @@ button:hover {
 }
 
 .return-line {
-  display:flex;
+  text-align: center;
   justify-content:space-between;
   margin-bottom: 10px;
 }

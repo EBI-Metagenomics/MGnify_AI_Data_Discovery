@@ -12,8 +12,8 @@ function App() {
   const [returnVisible, setReturnVisible] = useState(false);  // Hide the return elements until ready to serve to user
   const [codeClicked, setCodeClicked] = useState(false);      // Hide or show the generated code to users
   const [isDark, setIsDark] = useState(false);                // Allow user to view in dark mode.
-  const [dataGot, setDataGot] = useState({code: '',           // Keep the stuff received from the back end as state 
-                                          accession: '',      
+  const [dataGot, setDataGot] = useState({accession: '',      // Keep the stuff received from the back end as state 
+                                          code: '',      
                                           error: '',           
                                           traceback: '',       
                                           output: ''},);
@@ -32,25 +32,40 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setReturnVisible(false);
-    document.getElementById("submitBtn").disabled = true; // don't allow the form to be resubmit
+
+    /* Don't allow the form to be resubmit, or changed */
+    document.getElementById("submitBtn").disabled = true; 
+    document.getElementById("input").disabled = true;
+    document.getElementById("models").disabled = true;
+
     setLoading(true); // draw the loading skeleton
-    generateResult(chosenModel, searchQuery); // Pass the latest values directly
-    document.getElementById("submitBtn").disabled = false // allow the form to be resubmit
+    generateResult(); // Pass the latest values directly
+    
+    /* Allow the form to be resubmit, or changed */
+    document.getElementById("submitBtn").disabled = false;
+    document.getElementById("input").disabled = false;
+    document.getElementById("models").disabled = false
   };
   
   // This should pass off the JSON to the back end, and serve us the results (and the generated code).
-  async function generateResult(model, query) {
+  async function generateResult() {
     const backendPort = process.env.REACT_APP_BACKEND_PORT || 5000;
     const backendUrl = `http://localhost:${backendPort}/code`;
-    const payload = { model, query };
+    const payload = {model: chosenModel, query: searchQuery};
     const postResponse = await fetch(backendUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify(payload),
     });
     const testData = await postResponse.json();
     console.log(testData);
-    setDataGot(testData);
+    setDataGot({
+      accession: testData.accession,
+      code: testData.code,
+      error: testData.error,
+      traceback: testData.traceback,
+      output: testData.output
+    });
     setLoading(false); // hide the loading skeleton
     setReturnVisible(true); // Only show results after data is received
   }
@@ -87,7 +102,9 @@ function App() {
     );
     const url = `https://www.ebi.ac.uk/metagenomics/analysis/${dataGot.accession}#overview`;
     return(
-        <div className="return-line"><p>Click</p><a href={url} >here</a> <p>to view the {dataGot.accession} data.</p></div>
+        <div className="return-line">
+          <p>Click <a href={url}>here</a> to view the {dataGot.accession} data.</p>
+        </div>
     )
   }
 
@@ -137,7 +154,8 @@ function App() {
         <h1>Search our dataset - with plain English.</h1>
         <form onSubmit={handleSubmit}>
           <label>What are you searching for?</label>
-          <input 
+          <input
+            id="input" 
             type="text" 
             placeholder="I want data on..."
             value={searchQuery}
@@ -146,9 +164,7 @@ function App() {
           <label>Select a model to search with: </label>
           <select className="models" name="models" id="models" onChange={handleModelChoice} required>
             <option value="DeepSeek">DeepSeek</option>
-            <option value="Claude">Claude</option>
             <option value="ChatGPT">ChatGPT</option>
-            <option value="Grok">Grok</option>
           </select>
           <button id="submitBtn" type="submit">Get Results</button>
         </form>
