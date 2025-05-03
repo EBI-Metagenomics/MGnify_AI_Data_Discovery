@@ -5,6 +5,7 @@ import io
 import contextlib
 import traceback
 import os
+import json
 
 app = Flask(__name__)
 frontend_port = os.environ.get("FRONTEND_PORT", "3000")
@@ -40,7 +41,7 @@ def returnCode():
     result = run_dynamic(code)
     if result["success"]:
         response = {
-            "accession": result["output"],
+            "accession": json.loads(result["output"]),
             "code": code
         }
     else:
