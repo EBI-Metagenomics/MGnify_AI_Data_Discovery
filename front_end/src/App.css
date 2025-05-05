@@ -9,8 +9,9 @@ body, html {
 
 .app-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: start;
+  align-content: flex-start;
   min-height: 100vh;
   text-align: center;
   padding: 50px;
@@ -18,8 +19,7 @@ body, html {
 }
 
 .search-wrapper {
-  width: 100%;
-  max-width: 800px;
+  transition: all 0.5s ease;
 }
 
 .ebi-header {
@@ -30,13 +30,6 @@ body, html {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
-}
-
-.description {
-  text-align: left;
-  font-size: 1.1rem;
-  color: var(--text-colour);
-  margin-bottom: 20px;
 }
 
 h1 {
@@ -86,6 +79,10 @@ form {
   padding: 20px;
   background-color: var(--form-colour);
   border-radius: 10px;
+  margin-bottom: 10px;
+  display: grid;
+  justify-content: space-evenly;
+  overflow: hidden;
 }
 
 .return-line {
@@ -94,6 +91,7 @@ form {
   margin-bottom: 20px;
   line-height: 1.2;
   text-align: left;
+  overflow: auto;
 }
 
 label {
@@ -162,32 +160,32 @@ button:hover {
 
 .return-line {
   text-align: center;
+  justify-content:space-between;
   margin-bottom: 10px;
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.code-container{
+.code-show {
+  font-size: 1em;
+  border-radius: 6px;
+  margin-top: 0.5em;
+  overflow-x: auto;
+}
+
+#code-container {
   margin-top: 1em;
   padding: 1em;
+  height: 500px;
   display: flex;
-  flex: wrap;
-  max-width: fit-content;
+  flex-direction: column;
+  max-width: 100%;
   background-color: var(--return-colour);
   color: var(--return-colour-text);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
   border-radius: 5px;
-  overflow-x: auto;
-  overflow-wrap: break-word;
-}
-
-.code-show{
-  max-height: 350px;
-  overflow-y: scroll;
-  font-size: 1em;
-  border-radius: 6px;
-  margin-top: 0.5em;
+  overflow: auto;
 }
 
 #apiBtn{
@@ -201,8 +199,8 @@ button:hover {
 
 .theme-toggle {
   position: absolute;
-  top: 2em;
-  right: 2em;
+  top: 0em;
+  right: 1em;
 } /* Locates the toggle in the top right */
 
 .toggle {
@@ -239,3 +237,40 @@ button:hover {
 .toggle:checked + .toggleAnim::after {
   transform: translateX(100%);
 } /* This shifts the circle left and right when toggled.*/
+
+.json-viewer {
+  background: #f5f5f5;
+  border-radius: 6px;
+  margin: 1em 0;
+}
+
+.error-message {
+  color: #dc3545;
+  font-family: monospace;
+  margin: 0.5em 0;
+  overflow: hidden;
+}
+
+.app-container.vertical {
+  /* Keep layout as row but center the search */
+  justify-content: center;
+}
+
+.app-container.vertical .search-wrapper {
+  width: 80%;
+  max-width: 600px;
+}
+
+.app-container.horizontal {
+  justify-content: space-between;
+}
+
+.app-container.horizontal .search-wrapper {
+  width: 40%;
+  max-width: 600px;
+}
+
+.app-container.horizontal .returnSection {
+  width: 55%;
+  height: 80vh;
+}
