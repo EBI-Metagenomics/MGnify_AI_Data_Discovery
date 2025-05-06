@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { prism, dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 function formatJSON(obj) {
   if (!obj) return "{}";
@@ -119,7 +119,7 @@ function App() {
           <h4>Analysis Results (JSON):</h4>
           <SyntaxHighlighter
             language="json"
-            style={isDark ? vscDarkPlus : prism}
+            style={isDark ? dark : prism}
             customStyle={{
               maxHeight: "500px",
               overflowY: "auto",
@@ -164,7 +164,7 @@ function App() {
         <SyntaxHighlighter
           language="python"
           id="code-show"
-          style={isDark ? vscDarkPlus : prism}
+          style={isDark ? dark : prism}
         >
           {dataGot.code}
         </SyntaxHighlighter>
