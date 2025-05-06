@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from ..main import get_script
+from ..main_DS import query_deepseek
 from flask_cors import CORS
 import io
 import contextlib
@@ -36,9 +37,18 @@ def returnCode():
     if not request.is_json:
         return jsonify({ "error": "Invalid Content Type" }), 400
     request_body = request.json
-    print(request_body)
-    code = get_script(request_body["query"])
-    result = run_dynamic(code)
+    if (request_body["model"] == "DeepSeek"):
+        code = query_deepseek(request_body["query"])
+        result = run_dynamic(code)
+        print("Code was run with ChatGPT!")
+    elif (request_body["model"] == "ChatGPT"):
+        code = get_script(request_body["query"])
+        result = run_dynamic(code)
+        print("Code was run with DeepSeek!")
+    else:
+        code = ""
+        result = {"success": False, "error": "Invalid Model chosen!", "traceback": "None", "output": "None"}
+
     if result["success"]:
         response = {
             "accession": json.loads(result["output"]),
