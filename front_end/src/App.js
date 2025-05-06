@@ -119,7 +119,6 @@ function App() {
           <h4>Analysis Results (JSON):</h4>
           <SyntaxHighlighter
             language="json"
-            className='json-viewer'
             style={isDark ? vscDarkPlus : prism}
             customStyle={{
               maxHeight: "500px",
