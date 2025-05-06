@@ -49,23 +49,23 @@ function App() {
   };
   
   async function generateResult() {
-    const backendPort = process.env.REACT_APP_BACKEND_PORT || 5000;
-    const backendUrl = `http://localhost:${backendPort}/code`;
-    const payload = { model: chosenModel, query: searchQuery };
+   const backendPort = process.env.REACT_APP_BACKEND_PORT || 5000;
+   const backendUrl = `http://localhost:${backendPort}/code`;
+   const payload = { model: chosenModel, query: searchQuery };
 
-    const postResponse = await fetch(backendUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+   const postResponse = await fetch(backendUrl, {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify(payload),
+   });
     const testData = await postResponse.json();
 
     setDataGot({
-      accession: testData.accession,
-      code: testData.code,
-      error: testData.error,
-      traceback: testData.traceback,
-      output: testData.output
+     accession: testData.accession,
+     code: testData.code,
+     error: testData.error,
+     traceback: testData.traceback,
+     output: testData.output
     });
 
     setLoading(false);
@@ -104,7 +104,7 @@ function App() {
     if (dataGot.error) {
       return (
         <div className="return-line">
-          <p>There was an error in processing your query.</p>
+          <p className='error-message'>There was an error in processing your query.</p>
         </div>
       );
     }
@@ -119,6 +119,7 @@ function App() {
           <h4>Analysis Results (JSON):</h4>
           <SyntaxHighlighter
             language="json"
+            className='json-viewer'
             style={isDark ? vscDarkPlus : prism}
             customStyle={{
               maxHeight: "500px",
@@ -174,11 +175,13 @@ function App() {
 
   const handleCodeClick = () => setCodeClicked(!codeClicked);
 
-  // Dynamically set flex direction based on whether results are visible
-  const layoutClass = returnVisible ? 'horizontal' : 'vertical';
+  // Dynamically set flex direction based on whether results/loading skeleton are visible
+  const layoutClass = returnVisible || loading
 
   return (
-    <div className={`app-container ${layoutClass}`} data-theme={isDark ? "dark" : "light"}>
+    <div className={`app-container`} 
+         layout-class={layoutClass ? "horizontal" : "vertical"} 
+         data-theme={isDark ? "dark" : "light"}>
       <div className="theme-toggle">
         <input
           type="checkbox"
@@ -220,11 +223,11 @@ function App() {
             Get Results
           </button>
         </form>
-
-        {loading && <LoadingSkeleton />}
       </div>
-
-      {returnVisible && <ReturnComponents />}
+      <div className="return-wrapper">
+        {loading && <LoadingSkeleton />}
+        {returnVisible && <ReturnComponents />}
+      </div>
     </div>
   );
 }
