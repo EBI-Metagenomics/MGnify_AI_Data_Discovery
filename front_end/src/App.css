@@ -238,12 +238,6 @@ button:hover {
   transform: translateX(100%);
 } /* This shifts the circle left and right when toggled.*/
 
-.json-viewer {
-  background: #f5f5f5;
-  border-radius: 6px;
-  margin: 1em 0;
-}
-
 .error-message {
   color: #dc3545;
   font-family: monospace;
