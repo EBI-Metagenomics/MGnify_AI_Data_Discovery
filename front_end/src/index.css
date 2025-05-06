@@ -24,6 +24,8 @@ code {
   --label-colour: #333;
   --return-colour: #dfdfdf;
   --return-colour-text: #676767;
+  --justify: center;
+  --search-width: 80%;
 }
 
 /* data-theme attribute lets us switch between light and dark mode */
@@ -37,4 +39,9 @@ code {
   --label-colour: #EEEEEE;
   --return-colour: #303030;
   --return-colour-text: #A9A9A9;
+}
+
+[layout-class="horizontal"] {
+  --justify: space-between;
+  --search-width: 40%
 }
