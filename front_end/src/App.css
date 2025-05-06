@@ -188,7 +188,7 @@ button:hover {
   height: 500px;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
+  max-width: 90%;
   background-color: var(--return-colour);
   color: var(--return-colour-text);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
