@@ -1,5 +1,34 @@
 #!/bin/bash
 
+SECRET_FILE="secret.txt"
+
+# Function to get a key from the file
+get_key() {
+    local key="$1"
+    grep "^${key}=" "$SECRET_FILE" 2>/dev/null | cut -d'=' -f2-
+}
+
+# Read existing keys
+OPENAI_API_KEY=$(get_key "OPENAI_API_KEY")
+DEEPSEEK_API_KEY=$(get_key "DEEPSEEK_API_KEY")
+
+# Prompt for missing keys
+if [ -z "$OPENAI_API_KEY" ]; then
+    read -p "Enter your OPENAI_API_KEY: " OPENAI_API_KEY
+    # Append to file
+    echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> "$SECRET_FILE"
+fi
+
+if [ -z "$DEEPSEEK_API_KEY" ]; then
+    read -p "Enter your DEEPSEEK_API_KEY: " DEEPSEEK_API_KEY
+    # Append to file
+    echo "DEEPSEEK_API_KEY=$DEEPSEEK_API_KEY" >> "$SECRET_FILE"
+fi
+
+# Export the keys for use in this shell session
+export OPENAI_API_KEY
+export DEEPSEEK_API_KEY
+
 # Load environment variables from .env files
 set -a
 [ -f ./front_end/.env ] && . ./front_end/.env
