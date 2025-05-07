@@ -12,6 +12,11 @@ get_key() {
 OPENAI_API_KEY=$(get_key "OPENAI_API_KEY")
 DEEPSEEK_API_KEY=$(get_key "DEEPSEEK_API_KEY")
 
+# Install modules needed for backend
+if [ ! -f $SECRET_FILE ]; then
+    pip install -r $(dirname $0)/back_end/requirements.txt
+fi
+
 # Prompt for missing keys
 if [ -z "$OPENAI_API_KEY" ]; then
     read -p "Enter your OPENAI_API_KEY: " OPENAI_API_KEY
