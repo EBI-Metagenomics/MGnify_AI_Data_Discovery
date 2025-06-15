@@ -23,33 +23,59 @@ guidelines = """
 8. Use only the context provided, details from the query about the API or any biomes should not be used in your response.
 """
 
-def get_biomes(query):
-    chroma_client = chromadb.PersistentClient(path=f'{os.getcwd()}/src/oxford_mgnify/chromadb')
-    collection = chroma_client.get_collection(name="lineages")
+# def get_biomes(query):
+#     chroma_client = chromadb.PersistentClient(path=f'{os.getcwd()}/src/oxford_mgnify/chromadb')
+#     collection = chroma_client.get_collection(name="lineages")
+#
+#     query_embedding = openai_client.embeddings.create(input=query, model="text-embedding-3-small").data[0].embedding
+#     results = collection.query(
+#         query_embeddings=[query_embedding],
+#         n_results=10
+#     )
+#     biomes = (
+#         "The biome referenced by a lineage is the final item in the lineage, where items are split by ':' \n"
+#         "Any individual item in the lineage is also a valid biome\n"
+#         "If the query references information that does not reference the biome, it may be found in the title field of the study\n"
+#         "Here are some lineages for biomes which may be relevant.\n"
+#     )
+#     for lineage in results['documents'][0]:
+#         biomes += f'{lineage}\n'
+#     return biomes
 
-    query_embedding = openai_client.embeddings.create(input=query, model="text-embedding-3-small").data[0].embedding
-    results = collection.query(
-        query_embeddings=[query_embedding],
-        n_results=10
-    )
+def get_biomes(query):
+    # Mocked fake biome names for testing purposes
+    fake_lineages = [
+        "root:Environmental:Soil:Forest",
+        "root:Host-associated:Human:Gut",
+        "root:Environmental:Water:Freshwater",
+        "root:Host-associated:Animal:Insect",
+        "root:Engineered:Bioreactor",
+        "root:Environmental:Air",
+        "root:Host-associated:Plant:Rhizosphere",
+        "root:Environmental:Sediment:Marine",
+        "root:Host-associated:Human:Skin",
+        "root:Engineered:Compost"
+    ]
     biomes = (
         "The biome referenced by a lineage is the final item in the lineage, where items are split by ':' \n"
         "Any individual item in the lineage is also a valid biome\n"
         "If the query references information that does not reference the biome, it may be found in the title field of the study\n"
         "Here are some lineages for biomes which may be relevant.\n"
     )
-    for lineage in results['documents'][0]:
+    for lineage in fake_lineages:
         biomes += f'{lineage}\n'
     return biomes
 
 
-
 def get_context(query):
-    with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyAnalysisDetail.json', 'r') as file:
+    # with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyAnalysisDetail.json', 'r') as file:
+    with open(f'/Users/mahfouz/Code/oxford/Oxford_MGnify_project/back_end/src/oxford_mgnify/schemas/MGnifyAnalysisDetail.json', 'r') as file:
         analysis_detail_schema = file.read()
-    with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/PagedMGnifyAnalysis.json', 'r') as file:
+    # with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/PagedMGnifyAnalysis.json', 'r') as file:
+    with open(f'/Users/mahfouz/Code/oxford/Oxford_MGnify_project/back_end/src/oxford_mgnify/schemas/MGnifyStudyDetail.json', 'r') as file:
         paged_analysis_schema = file.read()
-    with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyStudyDetail.json', 'r') as file:
+    # with open(f'{os.getcwd()}/src/oxford_mgnify/schemas/MGnifyStudyDetail.json', 'r') as file:
+    with open(f'/Users/mahfouz/Code/oxford/Oxford_MGnify_project/back_end/src/oxford_mgnify/schemas/PagedMGnifyAnalysis.json', 'r') as file:
         study_detail_schema = file.read()
     context = (
         "You have access to the following endpoints. \n" 

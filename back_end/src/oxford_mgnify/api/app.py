@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from ..main import get_script
-from ..main_DS import query_deepseek
+# from ..main import get_script
+# from ..main_DS import query_deepseek
 from flask_cors import CORS
 import io
 import contextlib
@@ -8,8 +8,11 @@ import traceback
 import os
 import json
 
+from back_end.src.oxford_mgnify.main import get_script
+from back_end.src.oxford_mgnify.main_DS import query_deepseek
+
 app = Flask(__name__)
-frontend_port = os.environ.get("FRONTEND_PORT", "3000")
+frontend_port = os.environ.get("FRONTEND_PORT", "3001")
 CORS(app, origins=[f"http://localhost:{frontend_port}"])
 
 def run_dynamic(code: str, globals_dicts=None, locals_dicts=None):
