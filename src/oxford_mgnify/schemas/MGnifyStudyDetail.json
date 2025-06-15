@@ -1,0 +1,65 @@
+{
+  "title": "MGnifyStudyDetail",
+  "type": "object",
+  "properties": {
+    "accession": { "type": "string"},
+    "ena_accessions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "title": { "type": "string"},
+    "biome": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "biome_name": { "type": "string" },
+            "lineage": { "type": "string"}
+          },
+          "required": ["biome_name"]
+        },
+        { "type": "null"}
+      ]
+    },
+    "updated_at": { "type": "string", "format": "date-time"},
+    "downloads": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "alias": { "type": "string" },
+          "download_type": {
+            "type": "string",
+            "enum": ["Sequence data","Quality control","Functional analysis","Taxonomic analysis","Statistics","non-coding RNAs","Genome analysis","Analysis RO Crate","Other"]
+          },
+          "file_type": {
+            "type": "string",
+            "enum": ["fasta","tsv","biom","csv","json","svg","tree","html","other"]
+          },
+          "long_description": { "type": "string" },
+          "short_description": { "type": "string" },
+          "download_group": {"type": ["string", "null"]},
+          "file_size_bytes": {"type": ["integer", "null"]},
+          "index_file": {
+            "type": ["object", "null"],
+            "properties": {
+              "index_type": { "type": "string" },
+              "path": { "type": "string" },
+              "relative_url": { "type": "string" }
+            },
+            "required": ["index_type", "path", "relative_url"]
+          },
+          "parent_identifier": {
+            "type": ["integer", "string"]
+          },
+          "url": { "type": "string" }
+        },
+        "required": ["path", "alias", "download_type", "file_type", "long_description", "short_description", "parent_identifier"]
+      }
+    }
+  },
+  "required": ["accession", "ena_accessions", "title", "biome", "updated_at", "downloads"]
+}

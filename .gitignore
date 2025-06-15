@@ -34,3 +34,6 @@ coverage.xml
 node_modules/
 
 secret.txt
+
+.DS_Store
+../../../.DS_Store
