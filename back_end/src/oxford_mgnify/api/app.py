@@ -358,8 +358,28 @@ def returnCode():
         if result["success"]:
             try:
                 logger.info("Code execution successful, parsing output")
+                # Try to convert Python's string representation to valid JSON
+                output = result["output"].strip()
+                try:
+                    # First attempt: try to parse as-is
+                    parsed_output = json.loads(output)
+                except json.JSONDecodeError:
+                    logger.warning("Direct JSON parsing failed, attempting to fix output format")
+                    try:
+                        # Second attempt: try to evaluate as Python literal and convert to JSON
+                        import ast
+                        # Use ast.literal_eval to safely evaluate the string as a Python literal
+                        python_obj = ast.literal_eval(output)
+                        # Convert the Python object to a JSON string
+                        output = json.dumps(python_obj)
+                        parsed_output = json.loads(output)
+                        logger.info("Successfully converted Python representation to JSON")
+                    except (SyntaxError, ValueError, TypeError) as eval_error:
+                        logger.error(f"Failed to convert output to JSON: {str(eval_error)}")
+                        raise json.JSONDecodeError(f"Could not convert to valid JSON: {str(eval_error)}", output, 0)
+
                 response = {
-                    "accession": json.loads(result["output"]),
+                    "accession": parsed_output,
                     "code": code
                 }
                 return jsonify(response), 200

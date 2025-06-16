@@ -61,6 +61,7 @@ guidelines = """
 9. For time-based queries like "Show me all studies published in 2023", use the updated_at field to filter by date.
 10. For queries about specific studies like "Show me all analyses for study MGYS00001234", use the study_accession field to filter analyses.
 11. For natural language queries, extract the key entities and parameters (like dates, study accessions, biomes) and use them to construct appropriate API calls.
+12. When printing the final result, use json.dumps() to ensure the output is valid JSON format. For example: print(json.dumps(result))
 """
 
 # def get_biomes(query):
