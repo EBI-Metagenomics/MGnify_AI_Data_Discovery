@@ -3,12 +3,14 @@ import './App.css';
 
 // Import components
 import ThemeToggle from './components/layout/ThemeToggle';
+import EBIHeader from './components/layout/EBIHeader';
 import SearchForm from './components/search/SearchForm';
 import LoadingSkeleton from './components/results/LoadingSkeleton';
-import { ResultsContainer } from './components/results/ResultDisplay';
 
+import { ResultsContainer } from './components/results/ResultDisplay';
 // Import services
 import { generateSearchResults } from './services/api';
+import EBIFooter from "./components/layout/EBIFooter";
 
 /**
  * Main application component
@@ -98,9 +100,11 @@ function App() {
   const layoutClass = returnVisible || loading;
 
   return (
-    <div 
-      className={`app-container`} 
-      layout-class={layoutClass ? "horizontal" : "vertical"} 
+      <>
+        <EBIHeader/>
+            <div
+      className={`app-container`}
+      layout-class={layoutClass ? "horizontal" : "vertical"}
       data-theme={isDark ? "dark" : "light"}
     >
       <ThemeToggle isDark={isDark} setIsDark={setIsDark} />
@@ -118,14 +122,16 @@ function App() {
       <div className="return-wrapper">
         {loading && <LoadingSkeleton language={language} />}
         {returnVisible && (
-          <ResultsContainer 
-            data={dataGot} 
-            isDark={isDark} 
-            language={language} 
+          <ResultsContainer
+            data={dataGot}
+            isDark={isDark}
+            language={language}
           />
         )}
       </div>
     </div>
+        <EBIFooter/>
+      </>
   );
 }
 
