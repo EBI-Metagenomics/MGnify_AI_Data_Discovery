@@ -38,4 +38,5 @@ secret.txt
 .DS_Store
 ../../../.DS_Store
 back_end/src/oxford_mgnify/logs/*
-back_end/temp.py
+back_end/temp/temp.py
+back_end/temp/*

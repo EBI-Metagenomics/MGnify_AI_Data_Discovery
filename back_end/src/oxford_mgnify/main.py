@@ -253,7 +253,7 @@ def get_script(query):
         logger.debug("Constructing prompt with context")
         prompt = f"{initial_prompt}\n{guidelines}\nContext:\n{context}\n\nQuestion:\n{query}"
         logger.debug(f"Prompt constructed (length: {len(prompt)} characters)")
-        logger.debug(f"HERE IS MY Prompt constructed{prompt}")
+        # logger.debug(f"HERE IS MY Prompt constructed{prompt}")
 
         try:
             # Call OpenAI API

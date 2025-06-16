@@ -16,6 +16,7 @@ function formatJSON(obj) {
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [chosenModel, setChosenModel] = useState('DeepSeek');
+  const [language, setLanguage] = useState('en'); // 'en' for English, 'fr' for French
   const [loading, setLoading] = useState(false);
   const [returnVisible, setReturnVisible] = useState(false);
   const [codeClicked, setCodeClicked] = useState(false);
@@ -36,6 +37,10 @@ function App() {
     setChosenModel(e.target.value);
   };
 
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setReturnVisible(false);
@@ -51,7 +56,7 @@ function App() {
   async function generateResult() {
    const backendPort = process.env.REACT_APP_BACKEND_PORT || 5000;
    const backendUrl = `http://localhost:${backendPort}/code`;
-   const payload = { model: chosenModel, query: searchQuery };
+   const payload = { model: chosenModel, query: searchQuery, language: language };
 
    try {
      const postResponse = await fetch(backendUrl, {
@@ -109,7 +114,7 @@ function App() {
   function LoadingSkeleton() {
     return (
       <div className="loadingSkeleton">
-        <p>loading...</p>
+        <p>{language === "en" ? "loading..." : "chargement..."}</p>
       </div>
     );
   }
@@ -119,9 +124,11 @@ function App() {
       <div className="returnSection">
         <WriteResponse />
         <div className="code-show">
-          <p>Advanced:</p>
+          <p>{language === "en" ? "Advanced:" : "Avancé :"}</p>
           <button id="apiBtn" onClick={handleCodeClick} type="button">
-            Click here to show/hide the code we generated
+            {language === "en" 
+              ? "Click here to show/hide the code we generated" 
+              : "Cliquez ici pour afficher/masquer le code que nous avons généré"}
           </button>
           {codeClicked && <CodeWindow />}
         </div>
@@ -134,24 +141,24 @@ function App() {
     if (dataGot.error) {
       return (
         <div className="return-line error-container">
-          <h4>Error</h4>
+          <h4>{language === "en" ? "Error" : "Erreur"}</h4>
           <div className="error-message">
-            <p><strong>{dataGot.errorType || 'Error'}:</strong> {dataGot.error}</p>
+            <p><strong>{dataGot.errorType || (language === "en" ? 'Error' : 'Erreur')}:</strong> {dataGot.error}</p>
 
             {/* Show additional error details if available */}
             {dataGot.errorDetails && (
               <div className="error-details">
-                <h5>Additional Information:</h5>
+                <h5>{language === "en" ? "Additional Information:" : "Informations supplémentaires :"}</h5>
 
                 {/* Show line number if available */}
                 {dataGot.errorDetails.line_number && (
-                  <p><strong>Error at line:</strong> {dataGot.errorDetails.line_number}</p>
+                  <p><strong>{language === "en" ? "Error at line:" : "Erreur à la ligne :"}</strong> {dataGot.errorDetails.line_number}</p>
                 )}
 
                 {/* Show code context with line numbers if available */}
                 {dataGot.errorDetails.code_context && (
                   <div className="error-code-context">
-                    <p><strong>Code Context:</strong></p>
+                    <p><strong>{language === "en" ? "Code Context:" : "Contexte du code :"}</strong></p>
                     <pre className="error-code-with-lines">{dataGot.errorDetails.code_context}</pre>
                   </div>
                 )}
@@ -159,7 +166,7 @@ function App() {
                 {/* Show full code if available and no context is provided */}
                 {dataGot.errorDetails.code && !dataGot.errorDetails.code_context && (
                   <div className="error-code-preview">
-                    <p><strong>Generated Code:</strong></p>
+                    <p><strong>{language === "en" ? "Generated Code:" : "Code généré :"}</strong></p>
                     <SyntaxHighlighter
                       language="python"
                       style={isDark ? dark : prism}
@@ -180,34 +187,37 @@ function App() {
 
                 {dataGot.errorDetails.output && (
                   <div>
-                    <p><strong>Output:</strong></p>
+                    <p><strong>{language === "en" ? "Output:" : "Sortie :"}</strong></p>
                     <pre className="error-output">{dataGot.errorDetails.output}</pre>
                   </div>
                 )}
 
                 {/* Show suggestions based on error type */}
                 <div className="error-suggestions">
-                  <p><strong>Suggestions:</strong></p>
+                  <p><strong>{language === "en" ? "Suggestions:" : "Suggestions :"}</strong></p>
                   {dataGot.errorType === 'ValidationError' && (
-                    <p>Please check your query format and try again.</p>
+                    <p>{language === "en" ? "Please check your query format and try again." : "Veuillez vérifier le format de votre requête et réessayer."}</p>
                   )}
                   {dataGot.errorType === 'NetworkError' && (
-                    <p>Please check your internet connection and try again.</p>
+                    <p>{language === "en" ? "Please check your internet connection and try again." : "Veuillez vérifier votre connexion internet et réessayer."}</p>
                   )}
                   {dataGot.errorType === 'DeepSeekAPIError' && (
-                    <p>There was an issue with the DeepSeek API. Try using ChatGPT model instead.</p>
+                    <p>{language === "en" ? "There was an issue with the DeepSeek API. Try using ChatGPT model instead." : "Il y a eu un problème avec l'API DeepSeek. Essayez d'utiliser le modèle ChatGPT à la place."}</p>
                   )}
                   {dataGot.errorType === 'OpenAIAPIError' && (
-                    <p>There was an issue with the OpenAI API. Try using DeepSeek model instead.</p>
+                    <p>{language === "en" ? "There was an issue with the OpenAI API. Try using DeepSeek model instead." : "Il y a eu un problème avec l'API OpenAI. Essayez d'utiliser le modèle DeepSeek à la place."}</p>
                   )}
                   {dataGot.errorType === 'SyntaxError' && (
-                    <p>The generated code contains syntax errors. Try rephrasing your query.</p>
+                    <p>{language === "en" ? "The generated code contains syntax errors. Try rephrasing your query." : "Le code généré contient des erreurs de syntaxe. Essayez de reformuler votre requête."}</p>
                   )}
                   {dataGot.errorType === 'ExecutionError' && (
-                    <p>There was an error executing the generated code. Try being more specific in your query.</p>
+                    <p>{language === "en" ? "There was an error executing the generated code. Try being more specific in your query." : "Une erreur s'est produite lors de l'exécution du code généré. Essayez d'être plus précis dans votre requête."}</p>
                   )}
-                  {!['ValidationError', 'NetworkError', 'DeepSeekAPIError', 'OpenAIAPIError', 'SyntaxError', 'ExecutionError'].includes(dataGot.errorType) && (
-                    <p>Try rephrasing your query or selecting a different model.</p>
+                  {dataGot.errorType === 'TranslationError' && (
+                    <p>{language === "en" ? "There was an error translating your query. Please try again or use English." : "Une erreur s'est produite lors de la traduction de votre requête. Veuillez réessayer ou utiliser l'anglais."}</p>
+                  )}
+                  {!['ValidationError', 'NetworkError', 'DeepSeekAPIError', 'OpenAIAPIError', 'SyntaxError', 'ExecutionError', 'TranslationError'].includes(dataGot.errorType) && (
+                    <p>{language === "en" ? "Try rephrasing your query or selecting a different model." : "Essayez de reformuler votre requête ou de sélectionner un modèle différent."}</p>
                   )}
                 </div>
               </div>
@@ -225,7 +235,7 @@ function App() {
     ) {
       return (
         <div className="return-line">
-          <h4>Analysis Results (JSON):</h4>
+          <h4>{language === "en" ? "Analysis Results (JSON):" : "Résultats d'analyse (JSON) :"}</h4>
           <SyntaxHighlighter
             language="json"
             style={isDark ? dark : prism}
@@ -248,11 +258,13 @@ function App() {
       return (
         <div className="return-line">
           <p>
-            Click{" "}
+            {language === "en" ? "Click" : "Cliquez"}{" "}
             <a href={url} target="_blank" rel="noopener noreferrer">
-              here
+              {language === "en" ? "here" : "ici"}
             </a>{" "}
-            to view the {dataGot.accession} data.
+            {language === "en" 
+              ? `to view the ${dataGot.accession} data.` 
+              : `pour voir les données de ${dataGot.accession}.`}
           </p>
         </div>
       );
@@ -260,7 +272,7 @@ function App() {
 
     return (
       <div className="return-line">
-        <p>No results available.</p>
+        <p>{language === "en" ? "No results available." : "Aucun résultat disponible."}</p>
       </div>
     );
   }
@@ -269,7 +281,7 @@ function App() {
     if (!dataGot.code) return null;
     return (
       <div id="code-container">
-        <h4>Generated Python Code</h4>
+        <h4>{language === "en" ? "Generated Python Code" : "Code Python généré"}</h4>
         <SyntaxHighlighter
           language="python"
           id="code-show"
@@ -305,18 +317,18 @@ function App() {
         <div className="ebi-header">
           European Bioinformatics Institute
         </div>
-        <h1>Search our dataset - with plain English.</h1>
+        <h1>Search our dataset - in English or French.</h1>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="input">What are you searching for?</label>
+          <label htmlFor="input">{language === "en" ? "What are you searching for?" : "Que recherchez-vous ?"}</label>
           <input
             id="input"
             type="text"
-            placeholder="I want data on..."
+            placeholder={language === "en" ? "I want data on..." : "Je veux des données sur..."}
             value={searchQuery}
             onChange={handleSearchChange}
             required
           />
-          <label htmlFor="models">Select a model to search with:</label>
+          <label htmlFor="models">{language === "en" ? "Select a model to search with:" : "Sélectionnez un modèle pour la recherche :"}</label>
           <select
             className="models"
             name="models"
@@ -327,8 +339,21 @@ function App() {
             <option value="DeepSeek">DeepSeek</option>
             <option value="ChatGPT">ChatGPT</option>
           </select>
+
+          <label htmlFor="language">{language === "en" ? "Select language:" : "Sélectionnez la langue :"}</label>
+          <select
+            className="models"
+            name="language"
+            id="language"
+            onChange={handleLanguageChange}
+            value={language}
+          >
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+          </select>
+
           <button id="submitBtn" type="submit">
-            Get Results
+            {language === "en" ? "Get Results" : "Obtenir les résultats"}
           </button>
         </form>
       </div>

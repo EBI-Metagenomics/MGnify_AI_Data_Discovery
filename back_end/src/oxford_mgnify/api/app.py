@@ -12,7 +12,7 @@ import logging
 import logging.handlers
 from datetime import datetime
 
-from back_end.src.oxford_mgnify.main import get_script
+from back_end.src.oxford_mgnify.main import get_script, openai_client
 from back_end.src.oxford_mgnify.main_DS import query_deepseek
 
 # Configure logging
@@ -65,6 +65,42 @@ def create_error_response(error_type, message, details=None):
         response["error"]["details"] = details
 
     return response
+
+def translate_query(query, source_lang="fr", target_lang="en"):
+    """
+    Translate a query from source language to target language using OpenAI API.
+
+    Args:
+        query (str): The query to translate
+        source_lang (str): Source language code (default: "fr" for French)
+        target_lang (str): Target language code (default: "en" for English)
+
+    Returns:
+        str: Translated query
+
+    Raises:
+        Exception: If translation fails
+    """
+    try:
+        logger.info(f"Translating query from {source_lang} to {target_lang}: {query}")
+
+        # Use OpenAI API for translation
+        response = openai_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": f"You are a translator from {source_lang} to {target_lang}. Translate the following text, preserving all technical terms related to bioinformatics, genomics, and MGnify API. Provide only the translation without any explanations or additional text."},
+                {"role": "user", "content": query}
+            ],
+            temperature=0.3
+        )
+
+        translated_query = response.choices[0].message.content.strip()
+        logger.info(f"Translation result: {translated_query}")
+        return translated_query
+
+    except Exception as e:
+        logger.error(f"Translation error: {str(e)}", exc_info=True)
+        raise Exception(f"Failed to translate query: {str(e)}")
 
 def extract_error_context(code, exception_info):
     """
@@ -253,11 +289,31 @@ def returnCode():
         )
         return jsonify(error_response), 400
 
+    # Get language parameter (default to 'en' if not provided)
+    language = request_body.get("language", "en")
+    logger.info(f"Query language: {language}")
+
     # Process request based on model
     try:
         model = request_body["model"]
         query = request_body["query"]
         logger.info(f"Processing request with model: {model}, query: {query}")
+
+        # Translate query if language is French
+        original_query = query
+        if language == "fr":
+            try:
+                logger.info("Query is in French, translating to English")
+                query = translate_query(query, source_lang="fr", target_lang="en")
+                logger.info(f"Translated query: {query}")
+            except Exception as e:
+                logger.error(f"Translation failed: {str(e)}", exc_info=True)
+                error_response = create_error_response(
+                    "TranslationError", 
+                    f"Failed to translate query: {str(e)}",
+                    {"original_query": original_query}
+                )
+                return jsonify(error_response), 500
 
         if model == "DeepSeek":
             try:
