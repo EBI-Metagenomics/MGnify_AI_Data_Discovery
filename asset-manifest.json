@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/EBI-Metagenomics/MGnify_AI_Data_Discovery.git/static/css/main.8a37395f.css",
+    "main.js": "/EBI-Metagenomics/MGnify_AI_Data_Discovery.git/static/js/main.c6aeb43e.js",
+    "index.html": "/EBI-Metagenomics/MGnify_AI_Data_Discovery.git/index.html",
+    "main.8a37395f.css.map": "/EBI-Metagenomics/MGnify_AI_Data_Discovery.git/static/css/main.8a37395f.css.map",
+    "main.c6aeb43e.js.map": "/EBI-Metagenomics/MGnify_AI_Data_Discovery.git/static/js/main.c6aeb43e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8a37395f.css",
+    "static/js/main.c6aeb43e.js"
+  ]
+}
