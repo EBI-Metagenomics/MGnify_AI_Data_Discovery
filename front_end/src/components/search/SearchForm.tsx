@@ -1,5 +1,10 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { getText } from '../../utils/languageUtils';
+import { 
+  FormInput, 
+  FormSelect, 
+  FormTextarea 
+} from '../form';
 
 /**
  * Props for the SearchForm component
@@ -41,54 +46,52 @@ const SearchForm: React.FC<SearchFormProps> = ({
     setLanguage(e.target.value);
   };
 
+  const modelOptions = [
+    { value: 'DeepSeek', label: 'DeepSeek' },
+    { value: 'ChatGPT', label: 'ChatGPT' }
+  ];
+
+  const languageOptions = [
+    { value: 'en', label: 'English' },
+    { value: 'fr', label: 'Français' },
+    { value: 'zh', label: '中文' }
+  ];
+
   return (
     <div className="search-wrapper">
       <div className="ebi-header">
         <span className="ebi-header-section">MGnify</span> - Metagenomics Search Tool
       </div>
-      <h1>Search our dataset - in Englfoeofeofjish, French or Chinese.</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="input">
-          {getText("What are you searching for?", "Que recherchez-vous ?", "您在搜索什么？", language)}
-        </label>
-        <input
+      <h1>Search our dataset - in English, French or Chinese.</h1>
+
+      <form className="vf-stack vf-stack--400" onSubmit={handleSubmit}>
+        <FormInput
           id="input"
-          type="text"
-          placeholder={getText("I want data on...", "Je veux des données sur...", "我想要关于...的数据", language)}
+          label={getText("What are you seaffwfwrching for?", "Que recherchez-vous ?", "您在搜索什么？", language)}
           value={searchQuery}
           onChange={handleSearchChange}
-          required
+          placeholder={getText("I want data on...", "Je veux des données sur...", "我想要关于...的数据", language)}
+          helperText={getText("Enter your search query", "Entrez votre requête de recherche", "输入您的搜索查询", language)}
+          required={true}
         />
-        <label htmlFor="models">
-          {getText("Select a model to search with:", "Sélectionnez un modèle pour la recherche :", "选择搜索模型:", language)}
-        </label>
-        <select
-          className="models"
-          name="models"
+
+        <FormSelect
           id="models"
-          onChange={handleModelChoice}
+          label={getText("Select a model to search with:", "Sélectionnez un modèle pour la recherche :", "选择搜索模型:", language)}
+          options={modelOptions}
           value={chosenModel}
-        >
-          <option value="DeepSeek">DeepSeek</option>
-          <option value="ChatGPT">ChatGPT</option>
-        </select>
+          onChange={handleModelChoice}
+        />
 
-        <label htmlFor="language">
-          {getText("Select language:", "Sélectionnez la langue :", "选择语言:", language)}
-        </label>
-        <select
-          className="models"
-          name="language"
+        <FormSelect
           id="language"
-          onChange={handleLanguageChange}
+          label={getText("Select language:", "Sélectionnez la langue :", "选择语言:", language)}
+          options={languageOptions}
           value={language}
-        >
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="zh">中文</option>
-        </select>
+          onChange={handleLanguageChange}
+        />
 
-        <button id="submitBtn" type="submit">
+        <button id="submitBtn" type="submit" className="vf-button vf-button--primary">
           {getText("Get Results", "Obtenir les résultats", "获取结果", language)}
         </button>
       </form>

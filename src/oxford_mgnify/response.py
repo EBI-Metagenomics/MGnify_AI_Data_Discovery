@@ -1,23 +1,34 @@
 import requests
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 
-def fetch_data_from_query(url):
-    response = requests.get(url)
-    return json.loads(response.text)
+# Define current year
+current_year = datetime.now().year
 
-data = fetch_data_from_query('https://www.ebi.ac.uk/metagenomics/api/v2/analyses')
+# Define Base URL
+base_url = "https://www.ebi.ac.uk/metagenomics/api/v2/analyses/"
 
-last_year = datetime.now() - timedelta(days=365)
-analysis_from_last_year = []
+# Initialize a list to store analyses
+analyses_results = []
 
-for item in data['items']:
-    if 'sample' in item.keys():
-        sample = item['sample']
-        if sample is not None and 'updated_at' in sample.keys():
-            updated_at = sample['updated_at']
-            updated_date = datetime.strptime(updated_at, '%Y-%m-%dT%H:%M:%S.%fZ')
-            if updated_date > last_year:
-                analysis_from_last_year.append(item)
+# Iterate over pages of results
+page = 1
+while True:
+    # Get response from API
+    response = requests.get(f'{base_url}?page={page}')
+    data = response.json()
+    
+    # Check the 'updated_at' field of each analysis 
+    for item in data['items']:
+        if 'updated_at' in item['sample'] and item['sample']['updated_at'] is not None:
+            updated_year = int(item['sample']['updated_at'].split('-')[0])
+            if updated_year == current_year:
+                analyses_results.append(item)
 
-print(json.dumps(analysis_from_last_year))
+    # Check if there are more pages
+    if data.get('links', {}).get('next', None) is None:
+        break
+    else:
+        page += 1
+
+print(json.dumps(analyses_results))

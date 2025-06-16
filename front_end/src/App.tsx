@@ -118,31 +118,31 @@ function App(): JSX.Element {
     return (
         <>
             <EBIHeader/>
-                      <EBIHero
-                     heading={{
-                         text: 'MGnify AI-Powered Data Discovery Platform\n',
-                         link: 'JavaScript:Void(0);'
-                     }}
-                     subheading="Search our dataset - in English, French or Chinese."
-                     text="The MGnify AI-Powered Data Discovery Platform is a cutting-edge tool designed to help researchers and scientists explore and analyze metagenomic data. By leveraging advanced AI models, it enables users to uncover insights from complex datasets, facilitating breakthroughs in microbiome research and beyond."
-                     textLinks={[
-                         {
-                             text: 'systems–level approaches',
-                             link: 'JavaScript:Void(0);'
-                         },
-                         {
-                             text: 'gene expression',
-                             link: 'JavaScript:Void(0);'
-                         },
-                         {
-                             text: 'cell metabolism',
-                             link: 'JavaScript:Void(0);'
-                         }
-                     ]}
-                     callToAction={{
-                         text: 'Learn more',
-                         link: 'JavaScript:Void(0);'
-                     }}/>
+            <EBIHero
+                heading={{
+                    text: 'MGnify AI-Powered Data Discovery Platform\n',
+                    link: 'JavaScript:Void(0);'
+                }}
+                subheading="Search our dataset - in English, French or Chinese."
+                text="The MGnify AI-Powered Data Discovery Platform is a cutting-edge tool designed to help researchers and scientists explore and analyze metagenomic data. By leveraging advanced AI models, it enables users to uncover insights from complex datasets, facilitating breakthroughs in microbiome research and beyond."
+                textLinks={[
+                    {
+                        text: 'systems–level approaches',
+                        link: 'JavaScript:Void(0);'
+                    },
+                    {
+                        text: 'gene expression',
+                        link: 'JavaScript:Void(0);'
+                    },
+                    {
+                        text: 'cell metabolism',
+                        link: 'JavaScript:Void(0);'
+                    }
+                ]}
+                callToAction={{
+                    text: 'Learn more',
+                    link: 'JavaScript:Void(0);'
+                }}/>
             <div
                 className={`app-container`}
                 layout-className={layoutClass ? "horizontal" : "vertical"}
