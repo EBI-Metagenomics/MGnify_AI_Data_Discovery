@@ -299,12 +299,12 @@ def returnCode():
         query = request_body["query"]
         logger.info(f"Processing request with model: {model}, query: {query}")
 
-        # Translate query if language is French
+        # Translate query if language is not English
         original_query = query
-        if language == "fr":
+        if language != "en":
             try:
-                logger.info("Query is in French, translating to English")
-                query = translate_query(query, source_lang="fr", target_lang="en")
+                logger.info(f"Query is in {language}, translating to English")
+                query = translate_query(query, source_lang=language, target_lang="en")
                 logger.info(f"Translated query: {query}")
             except Exception as e:
                 logger.error(f"Translation failed: {str(e)}", exc_info=True)
