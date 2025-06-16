@@ -45,6 +45,9 @@ echo "Starting frontend on port $PORT..."
 cd front_end
 export PORT
 export REACT_APP_BACKEND_PORT
+echo "Installing frontend dependencies..."
+npm install
+echo "Starting frontend..."
 npm start > ../frontend.log 2>&1 &
 FRONTEND_PID=$!
 cd ..

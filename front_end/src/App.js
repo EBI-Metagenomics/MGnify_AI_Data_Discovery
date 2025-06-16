@@ -47,34 +47,63 @@ function App() {
     setLoading(true);
     generateResult();
   };
-  
+
   async function generateResult() {
    const backendPort = process.env.REACT_APP_BACKEND_PORT || 5000;
    const backendUrl = `http://localhost:${backendPort}/code`;
    const payload = { model: chosenModel, query: searchQuery };
 
-   const postResponse = await fetch(backendUrl, {
-     method: "POST",
-     headers: { "Content-Type": "application/json" },
-     body: JSON.stringify(payload),
-   });
-    const testData = await postResponse.json();
+   try {
+     const postResponse = await fetch(backendUrl, {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify(payload),
+     });
 
-    setDataGot({
-     accession: testData.accession,
-     code: testData.code,
-     error: testData.error,
-     traceback: testData.traceback,
-     output: testData.output
-    });
+     // Handle HTTP errors
+     if (!postResponse.ok) {
+       const errorData = await postResponse.json();
+       setDataGot({
+         accession: {},
+         code: '',
+         error: errorData.error ? 
+           (errorData.error.message || 'An error occurred with the server request') : 
+           `Server error: ${postResponse.status} ${postResponse.statusText}`,
+         errorType: errorData.error ? errorData.error.type : 'ServerError',
+         errorDetails: errorData.error ? errorData.error.details : null
+       });
+     } else {
+       // Process successful response
+       const responseData = await postResponse.json();
+       setDataGot({
+         accession: responseData.accession || {},
+         code: responseData.code || '',
+         error: responseData.error || '',
+         traceback: responseData.traceback || '',
+         output: responseData.output || '',
+         errorType: responseData.error && responseData.error.type ? responseData.error.type : '',
+         errorDetails: responseData.error && responseData.error.details ? responseData.error.details : null
+       });
+     }
+   } catch (error) {
+     // Handle network errors or other exceptions
+     console.error("Error fetching data:", error);
+     setDataGot({
+       accession: {},
+       code: '',
+       error: `Network error: ${error.message || 'Could not connect to the server'}`,
+       errorType: 'NetworkError',
+       errorDetails: { message: error.toString() }
+     });
+   } finally {
+     setLoading(false);
+     // Re-enable inputs/buttons
+     document.getElementById("submitBtn").disabled = false;
+     document.getElementById("input").disabled = false;
+     document.getElementById("models").disabled = false;
 
-    setLoading(false);
-    // Re-enable inputs/buttons
-    document.getElementById("submitBtn").disabled = false;
-    document.getElementById("input").disabled = false;
-    document.getElementById("models").disabled = false;
-
-    setReturnVisible(true);
+     setReturnVisible(true);
+   }
   }
 
   function LoadingSkeleton() {
@@ -101,14 +130,94 @@ function App() {
   }
 
   function WriteResponse() {
+    // Handle error cases with improved error display
     if (dataGot.error) {
       return (
-        <div className="return-line">
-          <p className='error-message'>There was an error in processing your query.</p>
+        <div className="return-line error-container">
+          <h4>Error</h4>
+          <div className="error-message">
+            <p><strong>{dataGot.errorType || 'Error'}:</strong> {dataGot.error}</p>
+
+            {/* Show additional error details if available */}
+            {dataGot.errorDetails && (
+              <div className="error-details">
+                <h5>Additional Information:</h5>
+
+                {/* Show line number if available */}
+                {dataGot.errorDetails.line_number && (
+                  <p><strong>Error at line:</strong> {dataGot.errorDetails.line_number}</p>
+                )}
+
+                {/* Show code context with line numbers if available */}
+                {dataGot.errorDetails.code_context && (
+                  <div className="error-code-context">
+                    <p><strong>Code Context:</strong></p>
+                    <pre className="error-code-with-lines">{dataGot.errorDetails.code_context}</pre>
+                  </div>
+                )}
+
+                {/* Show full code if available and no context is provided */}
+                {dataGot.errorDetails.code && !dataGot.errorDetails.code_context && (
+                  <div className="error-code-preview">
+                    <p><strong>Generated Code:</strong></p>
+                    <SyntaxHighlighter
+                      language="python"
+                      style={isDark ? dark : prism}
+                      customStyle={{
+                        maxHeight: "200px",
+                        overflowY: "auto",
+                        fontSize: "0.8em",
+                        borderRadius: "6px",
+                        padding: "0.5em"
+                      }}
+                      showLineNumbers={true}
+                      startingLineNumber={1}
+                    >
+                      {dataGot.errorDetails.code}
+                    </SyntaxHighlighter>
+                  </div>
+                )}
+
+                {dataGot.errorDetails.output && (
+                  <div>
+                    <p><strong>Output:</strong></p>
+                    <pre className="error-output">{dataGot.errorDetails.output}</pre>
+                  </div>
+                )}
+
+                {/* Show suggestions based on error type */}
+                <div className="error-suggestions">
+                  <p><strong>Suggestions:</strong></p>
+                  {dataGot.errorType === 'ValidationError' && (
+                    <p>Please check your query format and try again.</p>
+                  )}
+                  {dataGot.errorType === 'NetworkError' && (
+                    <p>Please check your internet connection and try again.</p>
+                  )}
+                  {dataGot.errorType === 'DeepSeekAPIError' && (
+                    <p>There was an issue with the DeepSeek API. Try using ChatGPT model instead.</p>
+                  )}
+                  {dataGot.errorType === 'OpenAIAPIError' && (
+                    <p>There was an issue with the OpenAI API. Try using DeepSeek model instead.</p>
+                  )}
+                  {dataGot.errorType === 'SyntaxError' && (
+                    <p>The generated code contains syntax errors. Try rephrasing your query.</p>
+                  )}
+                  {dataGot.errorType === 'ExecutionError' && (
+                    <p>There was an error executing the generated code. Try being more specific in your query.</p>
+                  )}
+                  {!['ValidationError', 'NetworkError', 'DeepSeekAPIError', 'OpenAIAPIError', 'SyntaxError', 'ExecutionError'].includes(dataGot.errorType) && (
+                    <p>Try rephrasing your query or selecting a different model.</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       );
     }
-  
+
+    // Handle successful results
     if (
       dataGot.accession &&
       typeof dataGot.accession === 'object' &&
@@ -133,7 +242,7 @@ function App() {
         </div>
       );
     }
-  
+
     if (typeof dataGot.accession === 'string' && dataGot.accession) {
       const url = `https://www.ebi.ac.uk/metagenomics/analysis/${dataGot.accession}#overview`;
       return (
@@ -148,7 +257,7 @@ function App() {
         </div>
       );
     }
-  
+
     return (
       <div className="return-line">
         <p>No results available.</p>
