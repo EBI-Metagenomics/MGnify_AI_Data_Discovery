@@ -40,3 +40,4 @@ secret.txt
 back_end/src/oxford_mgnify/logs/*
 back_end/temp/temp.py
 back_end/temp/*
+frontend.log
